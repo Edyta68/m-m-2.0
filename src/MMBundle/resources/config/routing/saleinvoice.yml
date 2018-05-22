@@ -1,0 +1,24 @@
+saleinvoice_index:
+    path:     /
+    defaults: { _controller: "MMBundle:SaleInvoice:index" }
+    methods:  GET
+
+saleinvoice_show:
+    path:     /{id}/show
+    defaults: { _controller: "MMBundle:SaleInvoice:show" }
+    methods:  GET
+
+saleinvoice_new:
+    path:     /new
+    defaults: { _controller: "MMBundle:SaleInvoice:new" }
+    methods:  [GET, POST]
+
+saleinvoice_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "MMBundle:SaleInvoice:edit" }
+    methods:  [GET, POST]
+
+saleinvoice_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "MMBundle:SaleInvoice:delete" }
+    methods:  DELETE
