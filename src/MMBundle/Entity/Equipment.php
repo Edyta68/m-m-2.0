@@ -1,0 +1,287 @@
+<?php
+
+namespace MMBundle\Entity;
+
+/**
+ * Equipment
+ */
+class Equipment
+{
+    /**
+     * @var int
+     */
+    private $id;
+
+    /**
+     * @var int
+     */
+    private $nrInwentarzowy;
+
+    /**
+     * @var string
+     */
+    private $nazwa;
+
+    /**
+     * @var string
+     */
+    private $nrSeryjny;
+
+    /**
+     * @var \DateTime
+     */
+    private $dataZakupu;
+
+    /**
+     * @var string
+     */
+    private $nrFaktury;
+
+    /**
+     * @var \DateTime
+     */
+    private $terminGwarancji;
+
+    /**
+     * @var float
+     */
+    private $wartoscNetto;
+
+    /**
+     * @var string
+     */
+    private $kogoSprzet;
+
+    /**
+     * @var string
+     */
+    private $notatki;
+
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set nrInwentarzowy
+     *
+     * @param integer $nrInwentarzowy
+     *
+     * @return Equipment
+     */
+    public function setNrInwentarzowy($nrInwentarzowy)
+    {
+        $this->nrInwentarzowy = $nrInwentarzowy;
+
+        return $this;
+    }
+
+    /**
+     * Get nrInwentarzowy
+     *
+     * @return int
+     */
+    public function getNrInwentarzowy()
+    {
+        return $this->nrInwentarzowy;
+    }
+
+    /**
+     * Set nazwa
+     *
+     * @param string $nazwa
+     *
+     * @return Equipment
+     */
+    public function setNazwa($nazwa)
+    {
+        $this->nazwa = $nazwa;
+
+        return $this;
+    }
+
+    /**
+     * Get nazwa
+     *
+     * @return string
+     */
+    public function getNazwa()
+    {
+        return $this->nazwa;
+    }
+
+    /**
+     * Set nrSeryjny
+     *
+     * @param string $nrSeryjny
+     *
+     * @return Equipment
+     */
+    public function setNrSeryjny($nrSeryjny)
+    {
+        $this->nrSeryjny = $nrSeryjny;
+
+        return $this;
+    }
+
+    /**
+     * Get nrSeryjny
+     *
+     * @return string
+     */
+    public function getNrSeryjny()
+    {
+        return $this->nrSeryjny;
+    }
+
+    /**
+     * Set dataZakupu
+     *
+     * @param \DateTime $dataZakupu
+     *
+     * @return Equipment
+     */
+    public function setDataZakupu($dataZakupu)
+    {
+        $this->dataZakupu = $dataZakupu;
+
+        return $this;
+    }
+
+    /**
+     * Get dataZakupu
+     *
+     * @return \DateTime
+     */
+    public function getDataZakupu()
+    {
+        return $this->dataZakupu;
+    }
+
+    /**
+     * Set nrFaktury
+     *
+     * @param string $nrFaktury
+     *
+     * @return Equipment
+     */
+    public function setNrFaktury($nrFaktury)
+    {
+        $this->nrFaktury = $nrFaktury;
+
+        return $this;
+    }
+
+    /**
+     * Get nrFaktury
+     *
+     * @return string
+     */
+    public function getNrFaktury()
+    {
+        return $this->nrFaktury;
+    }
+
+    /**
+     * Set terminGwarancji
+     *
+     * @param \DateTime $terminGwarancji
+     *
+     * @return Equipment
+     */
+    public function setTerminGwarancji($terminGwarancji)
+    {
+        $this->terminGwarancji = $terminGwarancji;
+
+        return $this;
+    }
+
+    /**
+     * Get terminGwarancji
+     *
+     * @return \DateTime
+     */
+    public function getTerminGwarancji()
+    {
+        return $this->terminGwarancji;
+    }
+
+    /**
+     * Set wartoscNetto
+     *
+     * @param float $wartoscNetto
+     *
+     * @return Equipment
+     */
+    public function setWartoscNetto($wartoscNetto)
+    {
+        $this->wartoscNetto = $wartoscNetto;
+
+        return $this;
+    }
+
+    /**
+     * Get wartoscNetto
+     *
+     * @return float
+     */
+    public function getWartoscNetto()
+    {
+        return $this->wartoscNetto;
+    }
+
+    /**
+     * Set kogoSprzet
+     *
+     * @param string $kogoSprzet
+     *
+     * @return Equipment
+     */
+    public function setKogoSprzet($kogoSprzet)
+    {
+        $this->kogoSprzet = $kogoSprzet;
+
+        return $this;
+    }
+
+    /**
+     * Get kogoSprzet
+     *
+     * @return string
+     */
+    public function getKogoSprzet()
+    {
+        return $this->kogoSprzet;
+    }
+
+    /**
+     * Set notatki
+     *
+     * @param string $notatki
+     *
+     * @return Equipment
+     */
+    public function setNotatki($notatki)
+    {
+        $this->notatki = $notatki;
+
+        return $this;
+    }
+
+    /**
+     * Get notatki
+     *
+     * @return string
+     */
+    public function getNotatki()
+    {
+        return $this->notatki;
+    }
+}
+

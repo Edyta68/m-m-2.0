@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Equipment</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ equipment.id }}</td>
+            </tr>
+            <tr>
+                <th>Nrinwentarzowy</th>
+                <td>{{ equipment.nrInwentarzowy }}</td>
+            </tr>
+            <tr>
+                <th>Nazwa</th>
+                <td>{{ equipment.nazwa }}</td>
+            </tr>
+            <tr>
+                <th>Nrseryjny</th>
+                <td>{{ equipment.nrSeryjny }}</td>
+            </tr>
+            <tr>
+                <th>Datazakupu</th>
+                <td>{% if equipment.dataZakupu %}{{ equipment.dataZakupu|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Nrfaktury</th>
+                <td>{{ equipment.nrFaktury }}</td>
+            </tr>
+            <tr>
+                <th>Termingwarancji</th>
+                <td>{% if equipment.terminGwarancji %}{{ equipment.terminGwarancji|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Wartoscnetto</th>
+                <td>{{ equipment.wartoscNetto }}</td>
+            </tr>
+            <tr>
+                <th>Kogosprzet</th>
+                <td>{{ equipment.kogoSprzet }}</td>
+            </tr>
+            <tr>
+                <th>Notatki</th>
+                <td>{{ equipment.notatki }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('equipment_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('equipment_edit', { 'id': equipment.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
