@@ -45,7 +45,10 @@ class AttendanceController extends Controller
         $form = $this->createForm(new AttendanceType(), $attendance);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()){
+            $end=$attendance->getGodzinaWyjscia()->getTimestamp();
+            $start=$attendance->getGodzinaWejscia()->getTimestamp();
+            $attendance->setCzasPracy(($end-$start)/3600);
             $em = $this->getDoctrine()->getManager();
             $em->persist($attendance);
             $em->flush();

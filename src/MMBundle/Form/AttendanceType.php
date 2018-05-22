@@ -18,7 +18,7 @@ class AttendanceType extends AbstractType
             ->add('data', 'date')
             ->add('godzinaWejscia', 'time')
             ->add('godzinaWyjscia', 'time')
-            ->add('czasPracy')
+           // ->add('czasPracy')
         ;
     }
     
