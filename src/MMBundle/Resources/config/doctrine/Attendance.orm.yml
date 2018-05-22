@@ -1,0 +1,24 @@
+MMBundle\Entity\Attendance:
+    type: entity
+    table: null
+    repositoryClass: MMBundle\Repository\AttendanceRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        data:
+            type: date
+            column: Data
+        godzinaWejscia:
+            type: time
+            column: GodzinaWejscia
+        godzinaWyjscia:
+            type: time
+            column: GodzinaWyjscia
+        czasPracy:
+            type: float
+            column: CzasPracy
+    lifecycleCallbacks: {  }

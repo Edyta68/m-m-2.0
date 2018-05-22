@@ -1,3 +1,7 @@
+mm_attendance:
+    resource: "@MMBundle/Controller/AttendanceController.php"
+    type:     annotation
+
 mm:
     resource: "@MMBundle/Resources/config/routing.yml"
     prefix:   /
