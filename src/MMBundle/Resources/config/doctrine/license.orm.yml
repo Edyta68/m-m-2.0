@@ -1,0 +1,49 @@
+MMBundle\Entity\license:
+    type: entity
+    table: null
+    repositoryClass: MMBundle\Repository\licenseRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        numerinwentarzowy:
+            type: string
+            length: 255
+            unique: true
+            column: Numerinwentarzowy
+        nazwa:
+            type: string
+            length: 255
+            column: Nazwa
+        kluczseryjny:
+            type: string
+            length: 255
+            unique: true
+            column: Kluczseryjny
+        datazakupu:
+            type: date
+            column: Datazakupu
+        idfaktury:
+            type: integer
+            unique: true
+            column: Idfaktury
+        wsparcietechnicznedo:
+            type: date
+            column: Wsparcietechnicznedo
+        licencjado:
+            type: string
+            length: 255
+            column: Licencjado
+        stan:
+            type: string
+            length: 255
+            column: Stan
+        notatka:
+            type: string
+            length: 255
+            nullable: true
+            column: Notatka
+    lifecycleCallbacks: {  }

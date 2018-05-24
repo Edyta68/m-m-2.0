@@ -1,3 +1,7 @@
+mm_license:
+    resource: "@MMBundle/Controller/licenseController.php"
+    type:     annotation
+
 mm_purchase_invoice:
     resource: "@MMBundle/Controller/PurchaseInvoiceController.php"
     type:     annotation
