@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>PurchaseInvoice</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ purchaseInvoice.id }}</td>
+            </tr>
+            <tr>
+                <th>Contractorid</th>
+                <td>{{ purchaseInvoice.contractorId }}</td>
+            </tr>
+            <tr>
+                <th>Fileid</th>
+                <td>{{ purchaseInvoice.fileId }}</td>
+            </tr>
+            <tr>
+                <th>Taxid</th>
+                <td>{{ purchaseInvoice.taxId }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ purchaseInvoice.title }}</td>
+            </tr>
+            <tr>
+                <th>Number</th>
+                <td>{{ purchaseInvoice.number }}</td>
+            </tr>
+            <tr>
+                <th>Amountnetto</th>
+                <td>{{ purchaseInvoice.amountNetto }}</td>
+            </tr>
+            <tr>
+                <th>Amountbrutto</th>
+                <td>{{ purchaseInvoice.amountBrutto }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('purchaseinvoice_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('purchaseinvoice_edit', { 'id': purchaseInvoice.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

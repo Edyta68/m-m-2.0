@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>PurchaseInvoice list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Contractorid</th>
+                <th>Fileid</th>
+                <th>Taxid</th>
+                <th>Title</th>
+                <th>Number</th>
+                <th>Amountnetto</th>
+                <th>Amountbrutto</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for purchaseInvoice in purchaseInvoices %}
+            <tr>
+                <td><a href="{{ path('purchaseinvoice_show', { 'id': purchaseInvoice.id }) }}">{{ purchaseInvoice.id }}</a></td>
+                <td>{{ purchaseInvoice.contractorId }}</td>
+                <td>{{ purchaseInvoice.fileId }}</td>
+                <td>{{ purchaseInvoice.taxId }}</td>
+                <td>{{ purchaseInvoice.title }}</td>
+                <td>{{ purchaseInvoice.number }}</td>
+                <td>{{ purchaseInvoice.amountNetto }}</td>
+                <td>{{ purchaseInvoice.amountBrutto }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('purchaseinvoice_show', { 'id': purchaseInvoice.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('purchaseinvoice_edit', { 'id': purchaseInvoice.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('purchaseinvoice_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}
