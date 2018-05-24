@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use MMBundle\Entity\Equipment;
 use MMBundle\Form\EquipmentType;
+use MMBundle\Form\EquipmentSearchType;
 
 /**
  * Equipment controller.
@@ -20,16 +21,30 @@ class EquipmentController extends Controller
      * Lists all Equipment entities.
      *
      * @Route("/", name="equipment_index")
-     * @Method("GET")
+	 * @Method({"GET", "POST"})
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $equipment = $em->getRepository('MMBundle:Equipment')->findAll();
 
+		$form = $this->createForm(new EquipmentSearchType());
+		$form->handleRequest($request);
+		
+		if($form->isSubmitted() && $form->isValid()) {
+			$equipment = $em->getRepository('MMBundle:Equipment')->search($form);
+		
+			return $this->render('equipment/index.html.twig', array(
+				'equipment' => $equipment,
+				'form' => $form->createView()
+			));			
+		}
+		
+        $equipment = $em->getRepository('MMBundle:Equipment')->findAll();
+		
         return $this->render('equipment/index.html.twig', array(
             'equipment' => $equipment,
+			'form' => $form->createView()
         ));
     }
 

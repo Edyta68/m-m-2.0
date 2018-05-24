@@ -2,6 +2,14 @@
 
 namespace MMBundle\Repository;
 
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use MMBundle\Entity\Equipment;
+use MMBundle\Form\EquipmentType;
+use MMBundle\Form\EquipmentSearchType;
+
 /**
  * EquipmentRepository
  *
@@ -10,4 +18,23 @@ namespace MMBundle\Repository;
  */
 class EquipmentRepository extends \Doctrine\ORM\EntityRepository
 {
+	public function search($form) {
+
+		$qb = $this->createQueryBuilder('e');
+		
+		
+		
+		if(!empty($form->get('nrInwentarzowy')->getData())) {
+			$qb->orWhere('e.nrInwentarzowy = :inw')
+				->setParameter('inw', $form->get('nrInwentarzowy')->getData());
+		}
+
+		if(!empty($form->get('nrSeryjny')->getData())) {
+			$qb->orWhere('e.nrSeryjny = :ser')
+				->setParameter('ser', $form->get('nrSeryjny')->getData());
+
+		}
+		
+		return $qb->getQuery()->getResult();
+	}
 }
