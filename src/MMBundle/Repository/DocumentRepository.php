@@ -10,4 +10,15 @@ namespace MMBundle\Repository;
  */
 class DocumentRepository extends \Doctrine\ORM\EntityRepository
 {
+	public function search($form) {
+		$qb = $this->createQueryBuilder('d');
+		
+		if(!empty($form->get('stronyDokumentu')->getData())) {
+			$qb->orWhere('d.stronyDokumentu = :str')
+				->setParameter('str', $form->get('stronyDokumentu')->getData());
+
+		}
+		
+		return $qb->getQuery()->getResult();		
+	}
 }

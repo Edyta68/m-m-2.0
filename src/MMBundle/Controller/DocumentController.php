@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use MMBundle\Entity\Document;
 use MMBundle\Form\DocumentType;
+use MMBundle\Form\DocumentSearchType;
 
 /**
  * Document controller.
@@ -20,16 +21,30 @@ class DocumentController extends Controller
      * Lists all Document entities.
      *
      * @Route("/", name="document_index")
-     * @Method("GET")
+     * @Method({"GET", "POST"})
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
+
+		$form = $this->createForm(new DocumentSearchType());
+		$form->handleRequest($request);
+
+		if($form->isSubmitted() && $form->isValid()) {
+			$documents = $em->getRepository('MMBundle:Document')->search($form);
+		
+			return $this->render('document/index.html.twig', array(
+				'documents' => $documents,
+				'form' => $form->createView()
+			));			
+		}		
+		
         $documents = $em->getRepository('MMBundle:Document')->findAll();
 
         return $this->render('document/index.html.twig', array(
             'documents' => $documents,
+			'form' => $form->createView()
         ));
     }
 
