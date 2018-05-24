@@ -1,3 +1,7 @@
+mm_purchase_invoice:
+    resource: "@MMBundle/Controller/PurchaseInvoiceController.php"
+    type:     annotation
+
 mm_sale_invoice:
     resource: "@MMBundle/Controller/SaleInvoiceController.php"
     type:     annotation
