@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>SaleInvoice</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ saleInvoice.id }}</td>
+            </tr>
+            <tr>
+                <th>Contractorid</th>
+                <td>{{ saleInvoice.contractorId }}</td>
+            </tr>
+            <tr>
+                <th>Fileid</th>
+                <td>{{ saleInvoice.fileId }}</td>
+            </tr>
+            <tr>
+                <th>Taxid</th>
+                <td>{{ saleInvoice.taxId }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ saleInvoice.title }}</td>
+            </tr>
+            <tr>
+                <th>Number</th>
+                <td>{{ saleInvoice.number }}</td>
+            </tr>
+            <tr>
+                <th>Amountnetto</th>
+                <td>{{ saleInvoice.amountNetto }}</td>
+            </tr>
+            <tr>
+                <th>Amountbrutto</th>
+                <td>{{ saleInvoice.amountBrutto }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('saleinvoice_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('saleinvoice_edit', { 'id': saleInvoice.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
