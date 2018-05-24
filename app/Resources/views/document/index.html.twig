@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Dokumenty</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Id wlasne</th>
+                <th>Data dokumentu</th>
+                <th>Strony dokumentu</th>
+                <th>Notatka</th>
+                <th>Akcje</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for document in documents %}
+            <tr>
+                <td><a href="{{ path('document_show', { 'id': document.id }) }}">{{ document.id }}</a></td>
+                <td>{{ document.iDWlasne }}</td>
+                <td>{% if document.dataDokumentu %}{{ document.dataDokumentu|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ document.stronyDokumentu }}</td>
+                <td>{{ document.notatka }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('document_show', { 'id': document.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('document_edit', { 'id': document.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('document_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

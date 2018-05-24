@@ -1,0 +1,26 @@
+MMBundle\Entity\Document:
+    type: entity
+    table: null
+    repositoryClass: MMBundle\Repository\DocumentRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        iDWlasne:
+            type: integer
+            column: IDWlasne
+        dataDokumentu:
+            type: date
+            column: DataDokumentu
+        stronyDokumentu:
+            type: integer
+            column: StronyDokumentu
+        notatka:
+            type: string
+            length: 255
+            nullable: true
+            column: Notatka
+    lifecycleCallbacks: {  }

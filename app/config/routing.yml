@@ -1,3 +1,7 @@
+mm_document:
+    resource: "@MMBundle/Controller/DocumentController.php"
+    type:     annotation
+
 mm_equipment:
     resource: "@MMBundle/Controller/EquipmentController.php"
     type:     annotation

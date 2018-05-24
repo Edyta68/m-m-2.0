@@ -1,0 +1,142 @@
+<?php
+
+namespace MMBundle\Entity;
+
+/**
+ * Document
+ */
+class Document
+{
+    /**
+     * @var int
+     */
+    private $id;
+
+    /**
+     * @var int
+     */
+    private $iDWlasne;
+
+    /**
+     * @var \DateTime
+     */
+    private $dataDokumentu;
+
+    /**
+     * @var int
+     */
+    private $stronyDokumentu;
+
+    /**
+     * @var string
+     */
+    private $notatka;
+
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set iDWlasne
+     *
+     * @param integer $iDWlasne
+     *
+     * @return Document
+     */
+    public function setIDWlasne($iDWlasne)
+    {
+        $this->iDWlasne = $iDWlasne;
+
+        return $this;
+    }
+
+    /**
+     * Get iDWlasne
+     *
+     * @return int
+     */
+    public function getIDWlasne()
+    {
+        return $this->iDWlasne;
+    }
+
+    /**
+     * Set dataDokumentu
+     *
+     * @param \DateTime $dataDokumentu
+     *
+     * @return Document
+     */
+    public function setDataDokumentu($dataDokumentu)
+    {
+        $this->dataDokumentu = $dataDokumentu;
+
+        return $this;
+    }
+
+    /**
+     * Get dataDokumentu
+     *
+     * @return \DateTime
+     */
+    public function getDataDokumentu()
+    {
+        return $this->dataDokumentu;
+    }
+
+    /**
+     * Set stronyDokumentu
+     *
+     * @param integer $stronyDokumentu
+     *
+     * @return Document
+     */
+    public function setStronyDokumentu($stronyDokumentu)
+    {
+        $this->stronyDokumentu = $stronyDokumentu;
+
+        return $this;
+    }
+
+    /**
+     * Get stronyDokumentu
+     *
+     * @return int
+     */
+    public function getStronyDokumentu()
+    {
+        return $this->stronyDokumentu;
+    }
+
+    /**
+     * Set notatka
+     *
+     * @param string $notatka
+     *
+     * @return Document
+     */
+    public function setNotatka($notatka)
+    {
+        $this->notatka = $notatka;
+
+        return $this;
+    }
+
+    /**
+     * Get notatka
+     *
+     * @return string
+     */
+    public function getNotatka()
+    {
+        return $this->notatka;
+    }
+}
+
