@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use MMBundle\Entity\SaleInvoice;
 use MMBundle\Form\SaleInvoiceType;
+use MMBundle\Form\SaleInvoiceSearchType;
 
 /**
  * SaleInvoice controller.
@@ -20,16 +21,33 @@ class SaleInvoiceController extends Controller
      * Lists all SaleInvoice entities.
      *
      * @Route("/", name="saleinvoice_index")
-     * @Method("GET")
+     * @Method({"GET", "POST"})
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
+		
+        $form = $this->createForm(new SaleInvoiceSearchType());
+		$form->handleRequest($request);
+		
+		
+		if($form->isSubmitted()) {
+
+			$saleInvoices = $em->getRepository('MMBundle:SaleInvoice')->search($form);
+
+
+			return $this->render('saleinvoice/index.html.twig', array(
+				'saleInvoices' => $saleInvoices,
+				'form' => $form->createView(),
+			));		
+		}
+		
         $saleInvoices = $em->getRepository('MMBundle:SaleInvoice')->findAll();
 
         return $this->render('saleinvoice/index.html.twig', array(
             'saleInvoices' => $saleInvoices,
+			'form' => $form->createView(),
         ));
     }
 
