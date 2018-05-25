@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use MMBundle\Entity\PurchaseInvoice;
 use MMBundle\Form\PurchaseInvoiceType;
+use MMBundle\Form\PurchaseInvoiceSearchType;
 
 /**
  * PurchaseInvoice controller.
@@ -20,16 +21,31 @@ class PurchaseInvoiceController extends Controller
      * Lists all PurchaseInvoice entities.
      *
      * @Route("/", name="purchaseinvoice_index")
-     * @Method("GET")
+     * @Method({"GET", "POST"})
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
+        $form = $this->createForm(new PurchaseInvoiceSearchType());
+		$form->handleRequest($request);
+
+		if($form->isSubmitted() && $form->isValid()) {
+			$purchaseInvoices = $em->getRepository('MMBundle:PurchaseInvoice')->search($form);
+
+			return $this->render('purchaseinvoice/index.html.twig', array(
+				'purchaseInvoices' => $purchaseInvoices,
+				'form' => $form->createView(),
+			));			
+			
+
+		}
+			
         $purchaseInvoices = $em->getRepository('MMBundle:PurchaseInvoice')->findAll();
 
         return $this->render('purchaseinvoice/index.html.twig', array(
             'purchaseInvoices' => $purchaseInvoices,
+			'form' => $form->createView(),
         ));
     }
 
