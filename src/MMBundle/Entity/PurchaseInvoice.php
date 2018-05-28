@@ -1,7 +1,7 @@
 <?php
 
 namespace MMBundle\Entity;
-
+use Doctrine\Common\Collections\ArrayCollection;
 /**
  * PurchaseInvoice
  */
@@ -46,6 +46,13 @@ class PurchaseInvoice
      * @var int
      */
     private $amountBrutto;
+
+    protected $equipments;
+
+    public function __construct()
+    {
+        $this->equipments = new ArrayCollection();
+    }
 
 
     /**
@@ -225,5 +232,38 @@ class PurchaseInvoice
     {
         return $this->amountBrutto;
     }
-}
 
+    /**
+     * Add equipment
+     *
+     * @param \MMBundle\Entity\Equipment $equipment
+     *
+     * @return PurchaseInvoice
+     */
+    public function addEquipment(\MMBundle\Entity\Equipment $equipment)
+    {
+        $this->equipments[] = $equipment;
+
+        return $this;
+    }
+
+    /**
+     * Remove equipment
+     *
+     * @param \MMBundle\Entity\Equipment $equipment
+     */
+    public function removeEquipment(\MMBundle\Entity\Equipment $equipment)
+    {
+        $this->equipments->removeElement($equipment);
+    }
+
+    /**
+     * Get equipments
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getEquipments()
+    {
+        return $this->equipments;
+    }
+}

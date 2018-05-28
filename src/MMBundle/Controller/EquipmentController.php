@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use MMBundle\Entity\Equipment;
+use MMBundle\Entity\PurchaseInvoice;
 use MMBundle\Form\EquipmentType;
 use MMBundle\Form\EquipmentSearchType;
 

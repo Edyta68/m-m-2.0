@@ -2,6 +2,11 @@ MMBundle\Entity\Equipment:
     type: entity
     table: null
     repositoryClass: MMBundle\Repository\EquipmentRepository
+    manyToOne:
+             invoice:
+                 targetEntity: PurchaseInvoice
+                 inversedBy: equipments
+
     id:
         id:
             type: integer
@@ -23,10 +28,7 @@ MMBundle\Entity\Equipment:
         dataZakupu:
             type: date
             column: DataZakupu
-        nrFaktury:
-            type: string
-            length: 255
-            column: NrFaktury
+
         terminGwarancji:
             type: date
             column: TerminGwarancji

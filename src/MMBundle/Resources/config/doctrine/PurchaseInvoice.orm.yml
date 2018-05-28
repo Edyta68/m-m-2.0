@@ -2,6 +2,10 @@ MMBundle\Entity\PurchaseInvoice:
     type: entity
     table: null
     repositoryClass: MMBundle\Repository\PurchaseInvoiceRepository
+    oneToMany:
+             equipments:
+                 targetEntity: Equipment
+                 mappedBy: invoice
     id:
         id:
             type: integer

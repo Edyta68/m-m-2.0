@@ -1,11 +1,11 @@
 <?php
 
 namespace MMBundle\Entity;
-
+use Doctrine\Common\Collections\ArrayCollection;
 /**
- * SaleInvoice
+ * PurchaseInvoice
  */
-class SaleInvoice
+class PurchaseInvoice
 {
     /**
      * @var int
@@ -47,6 +47,13 @@ class SaleInvoice
      */
     private $amountBrutto;
 
+    protected $equipments;
+
+    public function __construct()
+    {
+        $this->equipments = new ArrayCollection();
+    }
+
 
     /**
      * Get id
@@ -63,7 +70,7 @@ class SaleInvoice
      *
      * @param integer $contractorId
      *
-     * @return SaleInvoice
+     * @return PurchaseInvoice
      */
     public function setContractorId($contractorId)
     {
@@ -87,7 +94,7 @@ class SaleInvoice
      *
      * @param integer $fileId
      *
-     * @return SaleInvoice
+     * @return PurchaseInvoice
      */
     public function setFileId($fileId)
     {
@@ -111,7 +118,7 @@ class SaleInvoice
      *
      * @param integer $taxId
      *
-     * @return SaleInvoice
+     * @return PurchaseInvoice
      */
     public function setTaxId($taxId)
     {
@@ -135,7 +142,7 @@ class SaleInvoice
      *
      * @param string $title
      *
-     * @return SaleInvoice
+     * @return PurchaseInvoice
      */
     public function setTitle($title)
     {
@@ -159,7 +166,7 @@ class SaleInvoice
      *
      * @param integer $number
      *
-     * @return SaleInvoice
+     * @return PurchaseInvoice
      */
     public function setNumber($number)
     {
@@ -183,7 +190,7 @@ class SaleInvoice
      *
      * @param integer $amountNetto
      *
-     * @return SaleInvoice
+     * @return PurchaseInvoice
      */
     public function setAmountNetto($amountNetto)
     {
@@ -207,7 +214,7 @@ class SaleInvoice
      *
      * @param integer $amountBrutto
      *
-     * @return SaleInvoice
+     * @return PurchaseInvoice
      */
     public function setAmountBrutto($amountBrutto)
     {
@@ -226,3 +233,4 @@ class SaleInvoice
         return $this->amountBrutto;
     }
 }
+

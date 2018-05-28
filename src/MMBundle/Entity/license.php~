@@ -284,3 +284,4 @@ class license
         return $this->notatka;
     }
 }
+

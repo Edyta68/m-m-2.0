@@ -19,11 +19,17 @@ class EquipmentType extends AbstractType
             ->add('nazwa')
             ->add('nrSeryjny')
             ->add('dataZakupu', 'date')
-            ->add('nrFaktury')
+//            ->add('nrFaktury' , 'choice' , array(
+//                'choices'   => array('m' => 'Male', 'f' => 'Female'),
+//                'required'  => false,))
             ->add('terminGwarancji', 'date')
             ->add('wartoscNetto')
             ->add('kogoSprzet')
             ->add('notatki')
+            ->add('invoice', 'entity', array(
+                'class' => 'MMBundle:PurchaseInvoice',
+                'choice_label' => 'number',
+            ))
         ;
     }
     

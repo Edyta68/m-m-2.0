@@ -26,10 +26,6 @@
                 <td>{% if equipment.dataZakupu %}{{ equipment.dataZakupu|date('Y-m-d') }}{% endif %}</td>
             </tr>
             <tr>
-                <th>Nrfaktury</th>
-                <td>{{ equipment.nrFaktury }}</td>
-            </tr>
-            <tr>
                 <th>Termingwarancji</th>
                 <td>{% if equipment.terminGwarancji %}{{ equipment.terminGwarancji|date('Y-m-d') }}{% endif %}</td>
             </tr>
@@ -45,6 +41,10 @@
                 <th>Notatki</th>
                 <td>{{ equipment.notatki }}</td>
             </tr>
+            <tr>
+                <th>Numer faktury</th>
+                <td> {{ equipment.invoice.number }}</td>
+            </tr>tr>
         </tbody>
     </table>
 
