@@ -20,7 +20,7 @@
             </tr>
         </thead>
         <tbody>
-        {% for equipment in equipments %}
+        {% for equipment in equipment %}
             <tr>
                 <td><a href="{{ path('equipment_show', { 'id': equipment.id }) }}">{{ equipment.id }}</a></td>
                 <td>{{ equipment.nrInwentarzowy }}</td>
@@ -31,10 +31,6 @@
                 <td>{{ equipment.wartoscNetto }}</td>
                 <td>{{ equipment.kogoSprzet }}</td>
                 <td>{{ equipment.notatki }}</td>
-                {% for equipment in equipments %}
-                     <td>{{ equipment.invoice.number }} </td>
-                {% endfor %}
-
                 <td>
                     <ul>
                         <li>
@@ -45,6 +41,7 @@
                         </li>
                     </ul>
                 </td>
+                <td>{{ equipment.invoice ? equipment.invoice.number }}</td>
             </tr>
         {% endfor %}
         </tbody>
