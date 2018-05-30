@@ -19,11 +19,15 @@ class licenseType extends AbstractType
             ->add('nazwa')
             ->add('kluczseryjny')
             ->add('datazakupu', 'date')
-            ->add('idfaktury')
+           // ->add('idfaktury')
             ->add('wsparcietechnicznedo', 'date')
             ->add('licencjado')
             ->add('stan')
             ->add('notatka')
+            ->add('invoice', 'entity', array(
+                'class' => 'MMBundle:PurchaseInvoice',
+                'choice_label' => 'number',
+            ))
         ;
     }
     

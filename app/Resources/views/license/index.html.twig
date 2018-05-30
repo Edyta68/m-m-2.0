@@ -11,7 +11,7 @@
                 <th>Nazwa</th>
                 <th>Klucz seryjny</th>
                 <th>Data zakupu</th>
-                <th>Id faktury</th>
+                <th>Numer faktury</th>
                 <th>Wsparcie techniczne do</th>
                 <th>Licencja do</th>
                 <th>Stan</th>
@@ -27,7 +27,7 @@
                 <td>{{ license.nazwa }}</td>
                 <td>{{ license.kluczseryjny }}</td>
                 <td>{% if license.datazakupu %}{{ license.datazakupu|date('Y-m-d') }}{% endif %}</td>
-                <td>{{ license.idfaktury }}</td>
+                <td>{{ license.invoice ? license.invoice.number }}</td>
                 <td>{% if license.wsparcietechnicznedo %}{{ license.wsparcietechnicznedo|date('Y-m-d') }}{% endif %}</td>
                 <td>{{ license.licencjado }}</td>
                 <td>{{ license.stan }}</td>

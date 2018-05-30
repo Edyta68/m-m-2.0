@@ -6,6 +6,11 @@ MMBundle\Entity\PurchaseInvoice:
              equipments:
                  targetEntity: Equipment
                  mappedBy: invoice
+
+    oneToMany:
+                 licenses:
+                     targetEntity: license
+                     mappedBy: invoice
     id:
         id:
             type: integer

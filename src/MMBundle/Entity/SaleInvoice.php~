@@ -226,4 +226,3 @@ class SaleInvoice
         return $this->amountBrutto;
     }
 }
-

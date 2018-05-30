@@ -10,7 +10,7 @@
                 <td>{{ license.id }}</td>
             </tr>
             <tr>
-                <th>Numerinwentarzowy</th>
+                <th>Numer inwentarzowy</th>
                 <td>{{ license.numerinwentarzowy }}</td>
             </tr>
             <tr>
@@ -18,23 +18,23 @@
                 <td>{{ license.nazwa }}</td>
             </tr>
             <tr>
-                <th>Kluczseryjny</th>
+                <th>Klucz seryjny</th>
                 <td>{{ license.kluczseryjny }}</td>
             </tr>
             <tr>
-                <th>Datazakupu</th>
+                <th>Data zakupu</th>
                 <td>{% if license.datazakupu %}{{ license.datazakupu|date('Y-m-d') }}{% endif %}</td>
             </tr>
             <tr>
-                <th>Idfaktury</th>
-                <td>{{ license.idfaktury }}</td>
+                <th>Numer faktury</th>
+                <td>{{ license.invoice.number }}</td>
             </tr>
             <tr>
-                <th>Wsparcietechnicznedo</th>
+                <th>Wsparcie techniczne do</th>
                 <td>{% if license.wsparcietechnicznedo %}{{ license.wsparcietechnicznedo|date('Y-m-d') }}{% endif %}</td>
             </tr>
             <tr>
-                <th>Licencjado</th>
+                <th>Licencja do</th>
                 <td>{{ license.licencjado }}</td>
             </tr>
             <tr>

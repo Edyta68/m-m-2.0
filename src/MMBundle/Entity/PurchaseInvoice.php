@@ -48,10 +48,12 @@ class PurchaseInvoice
     private $amountBrutto;
 
     protected $equipments;
+    protected $licenses;
 
     public function __construct()
     {
         $this->equipments = new ArrayCollection();
+        $this->licenses = new ArrayCollection();
     }
 
 

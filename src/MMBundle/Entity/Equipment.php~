@@ -283,5 +283,28 @@ class Equipment
     {
         return $this->notatki;
     }
-}
 
+    /**
+     * Set invoice
+     *
+     * @param \MMBundle\Entity\PurchaseInvoice $invoice
+     *
+     * @return Equipment
+     */
+    public function setInvoice(\MMBundle\Entity\PurchaseInvoice $invoice = null)
+    {
+        $this->invoice = $invoice;
+
+        return $this;
+    }
+
+    /**
+     * Get invoice
+     *
+     * @return \MMBundle\Entity\PurchaseInvoice
+     */
+    public function getInvoice()
+    {
+        return $this->invoice;
+    }
+}

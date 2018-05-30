@@ -2,6 +2,11 @@ MMBundle\Entity\license:
     type: entity
     table: null
     repositoryClass: MMBundle\Repository\licenseRepository
+
+    manyToOne:
+                 invoice:
+                     targetEntity: PurchaseInvoice
+                     inversedBy: licenses
     id:
         id:
             type: integer
@@ -26,10 +31,6 @@ MMBundle\Entity\license:
         datazakupu:
             type: date
             column: Datazakupu
-        idfaktury:
-            type: integer
-            unique: true
-            column: Idfaktury
         wsparcietechnicznedo:
             type: date
             column: Wsparcietechnicznedo

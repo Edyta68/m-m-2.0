@@ -56,7 +56,7 @@ class license
      * @var string
      */
     private $notatka;
-
+    protected $invoice;
 
     /**
      * Get id
@@ -282,5 +282,29 @@ class license
     public function getNotatka()
     {
         return $this->notatka;
+    }
+
+    /**
+     * Set invoice
+     *
+     * @param \MMBundle\Entity\PurchaseInvoice $invoice
+     *
+     * @return license
+     */
+    public function setInvoice(\MMBundle\Entity\PurchaseInvoice $invoice = null)
+    {
+        $this->invoice = $invoice;
+
+        return $this;
+    }
+
+    /**
+     * Get invoice
+     *
+     * @return \MMBundle\Entity\PurchaseInvoice
+     */
+    public function getInvoice()
+    {
+        return $this->invoice;
     }
 }

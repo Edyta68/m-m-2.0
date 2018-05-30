@@ -139,4 +139,3 @@ class Attendance
         return $this->czasPracy;
     }
 }
-
