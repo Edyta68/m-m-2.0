@@ -3,21 +3,21 @@
 {% block body %}
     <h1>Lista obecności</h1>
 
-    <table>
+	<table class="table table-striped" >
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Data</th>
-                <th>Godzina Wejścia</th>
-                <th>Godzina Wyjścia</th>
-                <th>Czas Pracy</th>
-                <th>Akcje</th>
+                <th scope="col">Id</th>
+                <th scope="col">Data</th>
+                <th scope="col">Godzina Wejścia</th>
+                <th scope="col">Godzina Wyjścia</th>
+                <th scope="col">Czas Pracy</th>
+                <th scope="col">Akcje</th>
             </tr>
         </thead>
         <tbody>
         {% for attendance in attendances %}
             <tr>
-                <td><a href="{{ path('attendance_show', { 'id': attendance.id }) }}">{{ attendance.id }}</a></td>
+                <td scope="row"><a href="{{ path('attendance_show', { 'id': attendance.id }) }}">{{ attendance.id }}</a></td>
                 <td>{% if attendance.data %}{{ attendance.data|date('Y-m-d') }}{% endif %}</td>
                 <td>{% if attendance.godzinaWejscia %}{{ attendance.godzinaWejscia|date('H:i:s') }}{% endif %}</td>
                 <td>{% if attendance.godzinaWyjscia %}{{ attendance.godzinaWyjscia|date('H:i:s') }}{% endif %}</td>

@@ -3,24 +3,24 @@
 {% block body %}
     <h1>SaleInvoice list</h1>
 
-    <table>
+	<table class="table table-striped" >
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Contractorid</th>
-                <th>Fileid</th>
-                <th>Taxid</th>
-                <th>Title</th>
-                <th>Number</th>
-                <th>Amountnetto</th>
-                <th>Amountbrutto</th>
-                <th>Actions</th>
+                <th scope="col">Id</th>
+                <th scope="col">Contractorid</th>
+                <th scope="col">Fileid</th>
+                <th scope="col">Taxid</th>
+                <th scope="col">Title</th>
+                <th scope="col">Number</th>
+                <th scope="col">Amountnetto</th>
+                <th scope="col">Amountbrutto</th>
+                <th scope="col">Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for saleInvoice in saleInvoices %}
             <tr>
-                <td><a href="{{ path('saleinvoice_show', { 'id': saleInvoice.id }) }}">{{ saleInvoice.id }}</a></td>
+                <td scope="row"><a href="{{ path('saleinvoice_show', { 'id': saleInvoice.id }) }}">{{ saleInvoice.id }}</a></td>
                 <td>{{ saleInvoice.contractorId }}</td>
                 <td>{{ saleInvoice.fileId }}</td>
                 <td>{{ saleInvoice.taxId }}</td>

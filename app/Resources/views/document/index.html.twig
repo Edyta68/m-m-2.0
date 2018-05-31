@@ -3,21 +3,21 @@
 {% block body %}
     <h1>Dokumenty</h1>
 
-    <table>
+	<table class="table table-striped" >
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Id wlasne</th>
-                <th>Data dokumentu</th>
-                <th>Strony dokumentu</th>
-                <th>Notatka</th>
-                <th>Akcje</th>
+                <th scope="col">Id</th>
+                <th scope="col">Id wlasne</th>
+                <th scope="col">Data dokumentu</th>
+                <th scope="col">Strony dokumentu</th>
+                <th scope="col">Notatka</th>
+                <th scope="col">Akcje</th>
             </tr>
         </thead>
         <tbody>
         {% for document in documents %}
             <tr>
-                <td><a href="{{ path('document_show', { 'id': document.id }) }}">{{ document.id }}</a></td>
+                <td scope="row"><a href="{{ path('document_show', { 'id': document.id }) }}">{{ document.id }}</a></td>
                 <td>{{ document.iDWlasne }}</td>
                 <td>{% if document.dataDokumentu %}{{ document.dataDokumentu|date('Y-m-d') }}{% endif %}</td>
                 <td>{{ document.stronyDokumentu }}</td>

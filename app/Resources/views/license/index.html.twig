@@ -3,26 +3,26 @@
 {% block body %}
     <h1>Licencje</h1>
 
-    <table>
+	<table class="table table-striped" >
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Numer inwentarzowy</th>
-                <th>Nazwa</th>
-                <th>Klucz seryjny</th>
-                <th>Data zakupu</th>
-                <th>Numer faktury</th>
-                <th>Wsparcie techniczne do</th>
-                <th>Licencja do</th>
-                <th>Stan</th>
-                <th>Notatka</th>
-                <th>Akcje</th>
+                <th scope="col">Id</th>
+                <th scope="col">Numer inwentarzowy</th>
+                <th scope="col">Nazwa</th>
+                <th scope="col">Klucz seryjny</th>
+                <th scope="col">Data zakupu</th>
+                <th scope="col">Numer faktury</th>
+                <th scope="col">Wsparcie techniczne do</th>
+                <th scope="col">Licencja do</th>
+                <th scope="col">Stan</th>
+                <th scope="col">Notatka</th>
+                <th scope="col">Akcje</th>
             </tr>
         </thead>
         <tbody>
         {% for license in licenses %}
             <tr>
-                <td><a href="{{ path('license_show', { 'id': license.id }) }}">{{ license.id }}</a></td>
+                <td scope="row"><a href="{{ path('license_show', { 'id': license.id }) }}">{{ license.id }}</a></td>
                 <td>{{ license.numerinwentarzowy }}</td>
                 <td>{{ license.nazwa }}</td>
                 <td>{{ license.kluczseryjny }}</td>

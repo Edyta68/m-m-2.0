@@ -3,26 +3,26 @@
 {% block body %}
     <h1>Lista sprzętu</h1>
 
-    <table>
+	<table class="table table-striped" >
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Nr inwentarzowy</th>
-                <th>Nazwa</th>
-                <th>Nr seryjny</th>
-                <th>Data zakupu</th>
-                <th>Gwarancja do</th>
-                <th>Wartość netto</th>
-                <th>Kogo sprzęt</th>
-                <th>Notatki</th>
-                <th>Akcje</th>
-                <th>Numer faktury</th>
+                <th scope="col">Id</th>
+                <th scope="col">Nr inwentarzowy</th>
+                <th scope="col">Nazwa</th>
+                <th scope="col">Nr seryjny</th>
+                <th scope="col">Data zakupu</th>
+                <th scope="col">Gwarancja do</th>
+                <th scope="col">Wartość netto</th>
+                <th scope="col">Kogo sprzęt</th>
+                <th scope="col">Notatki</th>
+                <th scope="col">Akcje</th>
+                <th scope="col">Numer faktury</th>
             </tr>
         </thead>
         <tbody>
         {% for equipment in equipment %}
             <tr>
-                <td><a href="{{ path('equipment_show', { 'id': equipment.id }) }}">{{ equipment.id }}</a></td>
+                <td scope="row"><a href="{{ path('equipment_show', { 'id': equipment.id }) }}">{{ equipment.id }}</a></td>
                 <td>{{ equipment.nrInwentarzowy }}</td>
                 <td>{{ equipment.nazwa }}</td>
                 <td>{{ equipment.nrSeryjny }}</td>
