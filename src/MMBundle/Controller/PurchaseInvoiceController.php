@@ -9,6 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use MMBundle\Entity\PurchaseInvoice;
 use MMBundle\Form\PurchaseInvoiceType;
 use MMBundle\Form\PurchaseInvoiceSearchType;
+use Knp\Bundle\PaginatorBundle\KnpPaginatorBundle;
 
 /**
  * PurchaseInvoice controller.
@@ -40,11 +41,19 @@ class PurchaseInvoiceController extends Controller
 			
 
 		}
-			
-        $purchaseInvoices = $em->getRepository('MMBundle:PurchaseInvoice')->findAll();
-
+		
+		$dql   = "SELECT a FROM MMBundle:PurchaseInvoice a";
+		$query = $em->createQuery($dql);
+		$paginator  = $this->get('knp_paginator');			
+		
+		$pagination = $paginator->paginate(
+			$query, /* query NOT result */
+			$request->query->getInt('page', 1)/*page number*/,
+			10
+		);
+		
         return $this->render('purchaseinvoice/index.html.twig', array(
-            'purchaseInvoices' => $purchaseInvoices,
+			'pagination' => $pagination,
 			'form' => $form->createView(),
         ));
     }

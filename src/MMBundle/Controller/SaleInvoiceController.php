@@ -9,6 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use MMBundle\Entity\SaleInvoice;
 use MMBundle\Form\SaleInvoiceType;
 use MMBundle\Form\SaleInvoiceSearchType;
+use Knp\Bundle\PaginatorBundle\KnpPaginatorBundle;
 
 /**
  * SaleInvoice controller.
@@ -43,8 +44,17 @@ class SaleInvoiceController extends Controller
 			));		
 		}
 		
-        $saleInvoices = $em->getRepository('MMBundle:SaleInvoice')->findAll();
-
+        
+		$dql   = "SELECT a FROM MMBundle:SaleInvoice a";
+		$query = $em->createQuery($dql);
+		$paginator  = $this->get('knp_paginator');			
+		
+		$saleInvoices = $paginator->paginate(
+			$query, /* query NOT result */
+			$request->query->getInt('page', 1)/*page number*/,
+			10
+		);
+		
         return $this->render('saleinvoice/index.html.twig', array(
             'saleInvoices' => $saleInvoices,
 			'form' => $form->createView(),

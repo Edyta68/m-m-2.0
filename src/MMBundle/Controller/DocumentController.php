@@ -9,6 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use MMBundle\Entity\Document;
 use MMBundle\Form\DocumentType;
 use MMBundle\Form\DocumentSearchType;
+use Knp\Bundle\PaginatorBundle\KnpPaginatorBundle;
 
 /**
  * Document controller.
@@ -40,8 +41,17 @@ class DocumentController extends Controller
 			));			
 		}		
 		
-        $documents = $em->getRepository('MMBundle:Document')->findAll();
 
+		$dql   = "SELECT a FROM MMBundle:Document a";
+		$query = $em->createQuery($dql);
+		$paginator  = $this->get('knp_paginator');			
+		
+		$documents = $paginator->paginate(
+			$query, /* query NOT result */
+			$request->query->getInt('page', 1)/*page number*/,
+			10
+		);		
+		
         return $this->render('document/index.html.twig', array(
             'documents' => $documents,
 			'form' => $form->createView()

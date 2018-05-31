@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use MMBundle\Entity\Attendance;
 use MMBundle\Form\AttendanceType;
+use Knp\Bundle\PaginatorBundle\KnpPaginatorBundle;
 
 /**
  * Attendance controller.
@@ -20,14 +21,22 @@ class AttendanceController extends Controller
      * Lists all Attendance entities.
      *
      * @Route("/", name="attendance_index")
-     * @Method("GET")
+     * @Method({"GET", "POST"})
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $attendances = $em->getRepository('MMBundle:Attendance')->findAll();
 
+		$dql   = "SELECT a FROM MMBundle:Attendance a";
+		$query = $em->createQuery($dql);
+		$paginator  = $this->get('knp_paginator');			
+		
+		$attendances = $paginator->paginate(
+			$query, /* query NOT result */
+			$request->query->getInt('page', 1)/*page number*/,
+			10
+		);	
         return $this->render('attendance/index.html.twig', array(
             'attendances' => $attendances,
         ));

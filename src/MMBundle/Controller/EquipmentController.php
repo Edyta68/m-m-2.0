@@ -10,6 +10,7 @@ use MMBundle\Entity\Equipment;
 use MMBundle\Entity\PurchaseInvoice;
 use MMBundle\Form\EquipmentType;
 use MMBundle\Form\EquipmentSearchType;
+use Knp\Bundle\PaginatorBundle\KnpPaginatorBundle;
 
 /**
  * Equipment controller.
@@ -41,7 +42,15 @@ class EquipmentController extends Controller
 			));			
 		}
 		
-        $equipment = $em->getRepository('MMBundle:Equipment')->findAll();
+		$dql   = "SELECT a FROM MMBundle:Equipment a";
+		$query = $em->createQuery($dql);
+		$paginator  = $this->get('knp_paginator');			
+		
+		$equipment = $paginator->paginate(
+			$query, /* query NOT result */
+			$request->query->getInt('page', 1)/*page number*/,
+			10
+		);
 		
         return $this->render('equipment/index.html.twig', array(
             'equipment' => $equipment,
