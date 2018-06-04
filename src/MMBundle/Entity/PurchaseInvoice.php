@@ -21,12 +21,6 @@ class PurchaseInvoice
      */
     private $id;
 
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="contractor_id", type="integer")
-     */
-    private $contractorId;
 
     /**
      * @var integer
@@ -78,6 +72,11 @@ class PurchaseInvoice
     private $equipments;
 
     /**
+     * @ORM\ManyToOne(targetEntity="MMBundle\Entity\Contractor", inversedBy="invoice")
+     */
+    protected $contractors;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -94,30 +93,6 @@ class PurchaseInvoice
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set contractorId
-     *
-     * @param integer $contractorId
-     *
-     * @return PurchaseInvoice
-     */
-    public function setContractorId($contractorId)
-    {
-        $this->contractorId = $contractorId;
-
-        return $this;
-    }
-
-    /**
-     * Get contractorId
-     *
-     * @return integer
-     */
-    public function getContractorId()
-    {
-        return $this->contractorId;
     }
 
     /**
@@ -297,4 +272,30 @@ class PurchaseInvoice
     {
         return $this->equipments;
     }
+
+    /**
+     * Set contractors
+     *
+     * @param \MMBundle\Entity\Contractor $contractors
+     *
+     * @return PurchaseInvoice
+     */
+
+    public function setContractors(\MMBundle\Entity\Contractor $contractors = null)
+    {
+        $this->contractors = $contractors;
+
+        return $this;
+    }
+
+    /**
+     * Get contractors
+     *
+     * @return \MMBundle\Entity\Contractor
+     */
+    public function getContractors()
+    {
+        return $this->contractors;
+    }
+
 }

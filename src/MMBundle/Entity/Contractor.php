@@ -3,6 +3,7 @@
 namespace MMBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Contractor
@@ -27,6 +28,16 @@ class Contractor
      * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
+
+    /**
+     * @ORM\OneToMany(targetEntity="MMBundle\Entity\PurchaseInvoice", mappedBy="contractors")
+     */
+    protected $invoice;
+
+    public function __construct()
+    {
+        $this->invoice = new ArrayCollection();
+    }
 
 
     /**

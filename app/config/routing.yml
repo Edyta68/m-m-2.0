@@ -1,3 +1,7 @@
+mm_contractor:
+    resource: "@MMBundle/Controller/ContractorController.php"
+    type:     annotation
+
 mm_license:
     resource: "@MMBundle/Controller/licenseController.php"
     type:     annotation

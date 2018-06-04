@@ -10,10 +10,6 @@
                 <td>{{ purchaseInvoice.id }}</td>
             </tr>
             <tr>
-                <th>Contractorid</th>
-                <td>{{ purchaseInvoice.contractorId }}</td>
-            </tr>
-            <tr>
                 <th>Fileid</th>
                 <td>{{ purchaseInvoice.fileId }}</td>
             </tr>
@@ -36,6 +32,11 @@
             <tr>
                 <th>Amountbrutto</th>
                 <td>{{ purchaseInvoice.amountBrutto }}</td>
+            </tr>
+
+            <tr>
+                <th>Nazwa kontrahenta</th>
+                <td>{{ purchaseInvoice.contractors.name }}</td>
             </tr>
         </tbody>
     </table>

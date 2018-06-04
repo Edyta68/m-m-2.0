@@ -7,13 +7,13 @@
         <thead>
             <tr>
                 <th scope="col">Id</th>
-                <th scope="col">Contractorid</th>
                 <th scope="col">Fileid</th>
                 <th scope="col">Taxid</th>
                 <th scope="col">Title</th>
                 <th scope="col">Number</th>
                 <th scope="col">Amountnetto</th>
                 <th scope="col">Amountbrutto</th>
+                <th scope="col">Nazwa kontrahenta</th>
                 <th scope="col">Actions</th>
             </tr>
         </thead>
@@ -21,13 +21,13 @@
         {% for purchaseInvoice in pagination %}
             <tr>
                 <td scope="row"><a href="{{ path('purchaseinvoice_show', { 'id': purchaseInvoice.id }) }}">{{ purchaseInvoice.id }}</a></td>
-                <td>{{ purchaseInvoice.contractorId }}</td>
                 <td>{{ purchaseInvoice.fileId }}</td>
                 <td>{{ purchaseInvoice.taxId }}</td>
                 <td>{{ purchaseInvoice.title }}</td>
                 <td>{{ purchaseInvoice.number }}</td>
                 <td>{{ purchaseInvoice.amountNetto }}</td>
                 <td>{{ purchaseInvoice.amountBrutto }}</td>
+                <td>{{ purchaseInvoice.contractors ? purchaseInvoice.contractors.name }}</td>
                 <td>
                     <ul>
                         <li>
