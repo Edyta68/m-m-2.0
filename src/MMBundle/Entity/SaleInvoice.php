@@ -45,7 +45,7 @@ class SaleInvoice
     private $title;
 
     /**
-     * @var integer
+     * @var string
      *
      * @ORM\Column(name="number", type="integer")
      */
