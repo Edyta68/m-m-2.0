@@ -2,56 +2,80 @@
 
 namespace MMBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+
 /**
  * SaleInvoice
+ *
+ * @ORM\Table(name="sale_invoice")
+ * @ORM\Entity(repositoryClass="MMBundle\Repository\SaleInvoiceRepository")
  */
 class SaleInvoice
 {
     /**
-     * @var int
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
-     * @var int
+     * @var integer
+     *
+     * @ORM\Column(name="contractor_id", type="integer")
      */
     private $contractorId;
 
     /**
-     * @var int
+     * @var integer
+     *
+     * @ORM\Column(name="file_id", type="integer")
      */
     private $fileId;
 
     /**
-     * @var int
+     * @var integer
+     *
+     * @ORM\Column(name="tax_id", type="integer")
      */
     private $taxId;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="title", type="string", length=255)
      */
     private $title;
 
     /**
-     * @var int
+     * @var integer
+     *
+     * @ORM\Column(name="number", type="integer")
      */
     private $number;
 
     /**
-     * @var int
+     * @var integer
+     *
+     * @ORM\Column(name="amount_netto", type="integer")
      */
     private $amountNetto;
 
     /**
-     * @var int
+     * @var integer
+     *
+     * @ORM\Column(name="amount_brutto", type="integer")
      */
     private $amountBrutto;
+
 
 
     /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
@@ -75,7 +99,7 @@ class SaleInvoice
     /**
      * Get contractorId
      *
-     * @return int
+     * @return integer
      */
     public function getContractorId()
     {
@@ -99,7 +123,7 @@ class SaleInvoice
     /**
      * Get fileId
      *
-     * @return int
+     * @return integer
      */
     public function getFileId()
     {
@@ -123,7 +147,7 @@ class SaleInvoice
     /**
      * Get taxId
      *
-     * @return int
+     * @return integer
      */
     public function getTaxId()
     {
@@ -171,7 +195,7 @@ class SaleInvoice
     /**
      * Get number
      *
-     * @return int
+     * @return integer
      */
     public function getNumber()
     {
@@ -195,7 +219,7 @@ class SaleInvoice
     /**
      * Get amountNetto
      *
-     * @return int
+     * @return integer
      */
     public function getAmountNetto()
     {
@@ -219,7 +243,7 @@ class SaleInvoice
     /**
      * Get amountBrutto
      *
-     * @return int
+     * @return integer
      */
     public function getAmountBrutto()
     {

@@ -75,3 +75,17 @@ fos_user:
     db_driver: orm # other valid values are 'mongodb' and 'couchdb'
     firewall_name: main
     user_class: AppBundle\Entity\User
+    from_email:
+            address: "noreply@yourcompany.com"
+            sender_name: "No Reply"
+
+vich_uploader:
+    db_driver: orm
+    mappings:
+        file:
+            uri_prefix: /files
+            upload_destination: '%kernel.root_dir%/../web/files'
+            namer: vich_uploader.namer_origname
+            inject_on_load:     false
+            delete_on_update:   true
+            delete_on_remove:   true

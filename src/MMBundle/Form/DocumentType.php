@@ -5,6 +5,7 @@ namespace MMBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Vich\UploaderBundle\Form\Type\VichFileType;
 
 class DocumentType extends AbstractType
 {
@@ -19,6 +20,9 @@ class DocumentType extends AbstractType
             ->add('dataDokumentu', 'date')
             ->add('stronyDokumentu')
             ->add('notatka')
+            ->add('file', VichFileType::class, [
+                'required' => false,
+            ]);
         ;
     }
     

@@ -2,66 +2,97 @@
 
 namespace MMBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+
 /**
  * license
+ *
+ * @ORM\Table(name="license")
+ * @ORM\Entity(repositoryClass="MMBundle\Repository\licenseRepository")
  */
 class license
 {
     /**
-     * @var int
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="Numerinwentarzowy", type="string", length=255, unique=true)
      */
     private $numerinwentarzowy;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="Nazwa", type="string", length=255)
      */
     private $nazwa;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="Kluczseryjny", type="string", length=255, unique=true)
      */
     private $kluczseryjny;
 
     /**
      * @var \DateTime
+     *
+     * @ORM\Column(name="Datazakupu", type="date")
      */
     private $datazakupu;
 
     /**
-     * @var int
-     */
-    private $idfaktury;
-
-    /**
      * @var \DateTime
+     *
+     * @ORM\Column(name="Wsparcietechnicznedo", type="date")
      */
     private $wsparcietechnicznedo;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="Licencjado", type="string", length=255)
      */
     private $licencjado;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="Stan", type="string", length=255)
      */
     private $stan;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="Notatka", type="string", length=255, nullable=true)
      */
     private $notatka;
-    protected $invoice;
+
+    /**
+     * @var \MMBundle\Entity\PurchaseInvoice
+     *
+     * @ORM\ManyToOne(targetEntity="MMBundle\Entity\PurchaseInvoice", inversedBy="licenses")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="invoice_id", referencedColumnName="id")
+     * })
+     */
+    private $invoice;
+
+
 
     /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
@@ -162,30 +193,6 @@ class license
     public function getDatazakupu()
     {
         return $this->datazakupu;
-    }
-
-    /**
-     * Set idfaktury
-     *
-     * @param integer $idfaktury
-     *
-     * @return license
-     */
-    public function setIdfaktury($idfaktury)
-    {
-        $this->idfaktury = $idfaktury;
-
-        return $this;
-    }
-
-    /**
-     * Get idfaktury
-     *
-     * @return int
-     */
-    public function getIdfaktury()
-    {
-        return $this->idfaktury;
     }
 
     /**

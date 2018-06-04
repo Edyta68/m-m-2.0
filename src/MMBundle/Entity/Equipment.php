@@ -2,66 +2,97 @@
 
 namespace MMBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+
 /**
  * Equipment
+ *
+ * @ORM\Table(name="equipment")
+ * @ORM\Entity(repositoryClass="MMBundle\Repository\EquipmentRepository")
  */
 class Equipment
 {
     /**
-     * @var int
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
-     * @var int
+     * @var integer
+     *
+     * @ORM\Column(name="NrInwentarzowy", type="integer")
      */
     private $nrInwentarzowy;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="Nazwa", type="string", length=255)
      */
     private $nazwa;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="NrSeryjny", type="string", length=255)
      */
     private $nrSeryjny;
 
     /**
      * @var \DateTime
+     *
+     * @ORM\Column(name="DataZakupu", type="date")
      */
     private $dataZakupu;
 
     /**
-     * @var string
-     */
-    private $nrFaktury;
-
-    /**
      * @var \DateTime
+     *
+     * @ORM\Column(name="TerminGwarancji", type="date")
      */
     private $terminGwarancji;
 
     /**
      * @var float
+     *
+     * @ORM\Column(name="WartoscNetto", type="float")
      */
     private $wartoscNetto;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="KogoSprzet", type="string", length=255)
      */
     private $kogoSprzet;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="Notatki", type="string", length=255)
      */
     private $notatki;
 
-    protected $invoice;
+    /**
+     * @var \MMBundle\Entity\PurchaseInvoice
+     *
+     * @ORM\ManyToOne(targetEntity="MMBundle\Entity\PurchaseInvoice", inversedBy="equipments")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="invoice_id", referencedColumnName="id")
+     * })
+     */
+    private $invoice;
+
+
+
     /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
@@ -85,7 +116,7 @@ class Equipment
     /**
      * Get nrInwentarzowy
      *
-     * @return int
+     * @return integer
      */
     public function getNrInwentarzowy()
     {
@@ -162,30 +193,6 @@ class Equipment
     public function getDataZakupu()
     {
         return $this->dataZakupu;
-    }
-
-    /**
-     * Set nrFaktury
-     *
-     * @param string $nrFaktury
-     *
-     * @return Equipment
-     */
-    public function setNrFaktury($nrFaktury)
-    {
-        $this->nrFaktury = $nrFaktury;
-
-        return $this;
-    }
-
-    /**
-     * Get nrFaktury
-     *
-     * @return string
-     */
-    public function getNrFaktury()
-    {
-        return $this->nrFaktury;
     }
 
     /**

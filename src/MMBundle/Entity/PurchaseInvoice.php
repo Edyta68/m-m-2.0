@@ -1,66 +1,95 @@
 <?php
 
 namespace MMBundle\Entity;
-use Doctrine\Common\Collections\ArrayCollection;
+
+use Doctrine\ORM\Mapping as ORM;
+
 /**
  * PurchaseInvoice
+ *
+ * @ORM\Table(name="purchase_invoice")
+ * @ORM\Entity(repositoryClass="MMBundle\Repository\PurchaseInvoiceRepository")
  */
 class PurchaseInvoice
 {
     /**
-     * @var int
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
-     * @var int
+     * @var integer
+     *
+     * @ORM\Column(name="contractor_id", type="integer")
      */
     private $contractorId;
 
     /**
-     * @var int
+     * @var integer
+     *
+     * @ORM\Column(name="file_id", type="integer")
      */
     private $fileId;
 
     /**
-     * @var int
+     * @var integer
+     *
+     * @ORM\Column(name="tax_id", type="integer")
      */
     private $taxId;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="title", type="string", length=255)
      */
     private $title;
 
     /**
-     * @var int
+     * @var integer
+     *
+     * @ORM\Column(name="number", type="integer")
      */
     private $number;
 
     /**
-     * @var int
+     * @var integer
+     *
+     * @ORM\Column(name="amount_netto", type="integer")
      */
     private $amountNetto;
 
     /**
-     * @var int
+     * @var integer
+     *
+     * @ORM\Column(name="amount_brutto", type="integer")
      */
     private $amountBrutto;
 
-    protected $equipments;
-    protected $licenses;
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\OneToMany(targetEntity="MMBundle\Entity\Equipment", mappedBy="invoice")
+     */
+    private $equipments;
 
+    /**
+     * Constructor
+     */
     public function __construct()
     {
-        $this->equipments = new ArrayCollection();
-        $this->licenses = new ArrayCollection();
+        $this->equipments = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
 
     /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
@@ -84,7 +113,7 @@ class PurchaseInvoice
     /**
      * Get contractorId
      *
-     * @return int
+     * @return integer
      */
     public function getContractorId()
     {
@@ -108,7 +137,7 @@ class PurchaseInvoice
     /**
      * Get fileId
      *
-     * @return int
+     * @return integer
      */
     public function getFileId()
     {
@@ -132,7 +161,7 @@ class PurchaseInvoice
     /**
      * Get taxId
      *
-     * @return int
+     * @return integer
      */
     public function getTaxId()
     {
@@ -180,7 +209,7 @@ class PurchaseInvoice
     /**
      * Get number
      *
-     * @return int
+     * @return integer
      */
     public function getNumber()
     {
@@ -204,7 +233,7 @@ class PurchaseInvoice
     /**
      * Get amountNetto
      *
-     * @return int
+     * @return integer
      */
     public function getAmountNetto()
     {
@@ -228,7 +257,7 @@ class PurchaseInvoice
     /**
      * Get amountBrutto
      *
-     * @return int
+     * @return integer
      */
     public function getAmountBrutto()
     {

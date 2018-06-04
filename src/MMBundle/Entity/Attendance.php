@@ -2,41 +2,59 @@
 
 namespace MMBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+
 /**
  * Attendance
+ *
+ * @ORM\Table(name="attendance")
+ * @ORM\Entity(repositoryClass="MMBundle\Repository\AttendanceRepository")
  */
 class Attendance
 {
     /**
-     * @var int
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
      * @var \DateTime
+     *
+     * @ORM\Column(name="Data", type="date")
      */
     private $data;
 
     /**
      * @var \DateTime
+     *
+     * @ORM\Column(name="GodzinaWejscia", type="time")
      */
     private $godzinaWejscia;
 
     /**
      * @var \DateTime
+     *
+     * @ORM\Column(name="GodzinaWyjscia", type="time")
      */
     private $godzinaWyjscia;
 
     /**
      * @var float
+     *
+     * @ORM\Column(name="CzasPracy", type="float")
      */
     private $czasPracy;
+
 
 
     /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
