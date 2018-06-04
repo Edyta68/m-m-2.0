@@ -3,15 +3,82 @@
 namespace MMBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Validator\Constraints as Assert;
+use Vich\UploaderBundle\Entity\File as EmbeddedFile;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * SaleInvoice
  *
  * @ORM\Table(name="sale_invoice")
  * @ORM\Entity(repositoryClass="MMBundle\Repository\SaleInvoiceRepository")
+ * @Vich\Uploadable
  */
 class SaleInvoice
 {
+    /**
+
+     *
+     * @var File
+     *
+     *  @Vich\UploadableField(mapping="file", fileNameProperty="embeddedFile.name", size="embeddedFile.size", mimeType="embeddedFile.mimeType", originalName="embeddedFile.originalName")
+     */
+    private $file;
+
+    /**
+     * @var EmbeddedFile
+     *
+     * @ORM\Embedded(class="Vich\UploaderBundle\Entity\File")
+     */
+    private $embeddedFile;
+
+    public function __construct()
+    {
+        $this->embeddedFile = new EmbeddedFile();
+    }
+
+
+    /**
+     * @return File|null
+     */
+
+    public function getFile(): ?File
+    {
+        return $this->file;
+    }
+
+
+    /**
+     * @param File|UploadedFile $file
+     * @return Document
+     */
+
+    public function setFile(File $file = null): SaleInvoice
+    {
+        $this->file = $file;
+        return $this;
+    }
+
+    /**
+     * @return EmbeddedFile
+     */
+
+    public function getEmbeddedFile(): EmbeddedFile
+    {
+        return $this->embeddedFile;
+    }
+
+    /**
+     * @param EmbeddedFile $embeddedFile
+     * @return SaleInvoice
+     */
+    public function setEmbeddedFile(EmbeddedFile $embeddedFile): SaleInvoice
+    {
+        $this->embeddedFile = $embeddedFile;
+        return $this;
+    }
     /**
      * @var integer
      *

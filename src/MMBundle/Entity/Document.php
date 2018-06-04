@@ -9,38 +9,37 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Entity\File as EmbeddedFile;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
+
 /**
  * Document
  *
  * @ORM\Table(name="document")
  * @ORM\Entity(repositoryClass="MMBundle\Repository\DocumentRepository")
- *
  * @Vich\Uploadable
  */
 class Document
 {
     /**
+
+     *
      * @var File
-
-     * @Vich\UploadableField(mapping="file", fileNameProperty="embeddedFile.name", size="embeddedFile.size", mimeType="embeddedFile.mimeType", originalName="embeddedFile.originalName")
+     *
+     *  @Vich\UploadableField(mapping="file", fileNameProperty="embeddedFile.name", size="embeddedFile.size", mimeType="embeddedFile.mimeType", originalName="embeddedFile.originalName")
      */
-
     private $file;
-
 
     /**
      * @var EmbeddedFile
      *
      * @ORM\Embedded(class="Vich\UploaderBundle\Entity\File")
      */
-
     private $embeddedFile;
+
 
     public function __construct()
     {
         $this->embeddedFile = new EmbeddedFile();
     }
-
 
     /**
      * @return File|null
@@ -51,24 +50,24 @@ class Document
         return $this->file;
     }
 
+
     /**
      * @param File|UploadedFile $file
      * @return Document
      */
 
-    public function setFile(File $file): Document
+    public function setFile(File $file = null): Document
     {
         $this->file = $file;
-
         return $this;
     }
 
     /**
      * @return EmbeddedFile
      */
+
     public function getEmbeddedFile(): EmbeddedFile
     {
-
         return $this->embeddedFile;
     }
 
@@ -79,9 +78,9 @@ class Document
     public function setEmbeddedFile(EmbeddedFile $embeddedFile): Document
     {
         $this->embeddedFile = $embeddedFile;
-        return $this;
+         return $this;
+     }
 
-    }
 
     /**
      * @var integer
@@ -93,9 +92,9 @@ class Document
     private $id;
 
     /**
-     * @var integer
+     * @var string
      *
-     * @ORM\Column(name="IDWlasne", type="integer")
+     * @ORM\Column(name="IDWlasne", type="string", length=255, nullable=false)
      */
     private $iDWlasne;
 
