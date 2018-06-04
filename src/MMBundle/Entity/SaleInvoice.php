@@ -21,12 +21,7 @@ class SaleInvoice
      */
     private $id;
 
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="contractor_id", type="integer")
-     */
-    private $contractorId;
+
 
     /**
      * @var integer
@@ -70,6 +65,11 @@ class SaleInvoice
      */
     private $amountBrutto;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="MMBundle\Entity\Contractor", inversedBy="invoice")
+     */
+    protected $contractors;
+
 
 
     /**
@@ -82,29 +82,6 @@ class SaleInvoice
         return $this->id;
     }
 
-    /**
-     * Set contractorId
-     *
-     * @param integer $contractorId
-     *
-     * @return SaleInvoice
-     */
-    public function setContractorId($contractorId)
-    {
-        $this->contractorId = $contractorId;
-
-        return $this;
-    }
-
-    /**
-     * Get contractorId
-     *
-     * @return integer
-     */
-    public function getContractorId()
-    {
-        return $this->contractorId;
-    }
 
     /**
      * Set fileId
@@ -248,5 +225,30 @@ class SaleInvoice
     public function getAmountBrutto()
     {
         return $this->amountBrutto;
+    }
+
+    /**
+     * Set contractors
+     *
+     * @param \MMBundle\Entity\Contractor $contractors
+     *
+     * @return PurchaseInvoice
+     */
+
+    public function setContractors(\MMBundle\Entity\Contractor $contractors = null)
+    {
+        $this->contractors = $contractors;
+
+        return $this;
+    }
+
+    /**
+     * Get contractors
+     *
+     * @return \MMBundle\Entity\Contractor
+     */
+    public function getContractors()
+    {
+        return $this->contractors;
     }
 }

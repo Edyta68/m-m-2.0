@@ -15,13 +15,15 @@ class SaleInvoiceType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('contractorId')
             ->add('fileId')
             ->add('taxId')
             ->add('title')
             ->add('number')
             ->add('amountNetto')
             ->add('amountBrutto')
+            ->add('contractors', 'entity', array(
+                'class' => 'MMBundle:Contractor',
+                'choice_label' => 'name',))
         ;
     }
     
