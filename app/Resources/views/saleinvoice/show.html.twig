@@ -37,6 +37,12 @@
                 <th>Nazwa kontrahenta</th>
                 <td>{{ saleInvoice.contractors.name }}</td>
             </tr>
+            {% if saleInvoice.embeddedFile.name %}
+                <tr>
+                    <th>Plik</th>
+                    <td><a href="{{ vich_uploader_asset(saleInvoice, 'file') }}">Pobierz</a></td>
+                </tr>
+            {% endif %}
 
         </tbody>
     </table>
