@@ -17,16 +17,15 @@ class PurchaseInvoiceType extends AbstractType
     {
         $builder
             ->add('fileId')
-            ->add('taxId')
-            ->add('title')
             ->add('number')
-            ->add('amountNetto')
-            ->add('amountNettoCurrency')
-            ->add('currency')
-            ->add('amountBrutto')
             ->add('contractors', 'entity', array(
                 'class' => 'MMBundle:Contractor',
                 'choice_label' => 'name',))
+            ->add('amountNetto')
+            ->add('taxId')
+            ->add('amountBrutto')
+            ->add('amountNettoCurrency')
+            ->add('currency')
             ->add('file', VichFileType::class, [
                 'required' => false,
             ]);

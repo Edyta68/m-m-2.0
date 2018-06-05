@@ -1,22 +1,21 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>PurchaseInvoice list</h1>
+    <h1>Lista faktur zakupu</h1>
 
 	<table class="table table-striped" >
         <thead>
             <tr>
                 <th scope="col">Id</th>
-                <th scope="col">Fileid</th>
-                <th scope="col">Taxid</th>
-                <th scope="col">Title</th>
-                <th scope="col">Number</th>
-                <th scope="col">Amountnetto</th>
+                <th scope="col">Id własne</th>
+                <th scope="col">Numer faktury</th>
+                <th scope="col">Nazwa kontrahenta</th>
+                <th scope="col">Kwota netto</th>
+                <th scope="col">Kwota podatku VAT</th>
+                <th scope="col">Kwota brutto</th>
                 <th scope="col">Kwota netto w walucie</th>
                 <th scope="col">Waluta</th>
-                <th scope="col">Amountbrutto</th>
-                <th scope="col">Nazwa kontrahenta</th>
-                <th scope="col">Actions</th>
+                <th scope="col">Akcje</th>
             </tr>
         </thead>
         <tbody>
@@ -24,21 +23,20 @@
             <tr>
                 <td scope="row"><a href="{{ path('purchaseinvoice_show', { 'id': purchaseInvoice.id }) }}">{{ purchaseInvoice.id }}</a></td>
                 <td>{{ purchaseInvoice.fileId }}</td>
-                <td>{{ purchaseInvoice.taxId }}</td>
-                <td>{{ purchaseInvoice.title }}</td>
                 <td>{{ purchaseInvoice.number }}</td>
+                <td>{{ purchaseInvoice.contractors ? purchaseInvoice.contractors.name }}</td>
                 <td>{{ purchaseInvoice.amountNetto }}</td>
+                <td>{{ purchaseInvoice.taxId }}</td>
+                <td>{{ purchaseInvoice.amountBrutto }}</td>
                 <td>{{ purchaseInvoice.amountNettoCurrency }}</td>
                 <td>{{ purchaseInvoice.currency }}</td>
-                <td>{{ purchaseInvoice.amountBrutto }}</td>
-                <td>{{ purchaseInvoice.contractors ? purchaseInvoice.contractors.name }}</td>
                 <td>
                     <ul>
                         <li>
-                            <a href="{{ path('purchaseinvoice_show', { 'id': purchaseInvoice.id }) }}">show</a>
+                            <a href="{{ path('purchaseinvoice_show', { 'id': purchaseInvoice.id }) }}">Pokaż</a>
                         </li>
                         <li>
-                            <a href="{{ path('purchaseinvoice_edit', { 'id': purchaseInvoice.id }) }}">edit</a>
+                            <a href="{{ path('purchaseinvoice_edit', { 'id': purchaseInvoice.id }) }}">Edytuj</a>
                         </li>
                     </ul>
                 </td>
@@ -50,7 +48,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('purchaseinvoice_new') }}">Create a new entry</a>
+            <a href="{{ path('purchaseinvoice_new') }}">Dodaj nową fakturę zakupu</a>
         </li>
     </ul>
 	

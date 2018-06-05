@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>SaleInvoice</h1>
+    <h1>Faktura sprzedaży</h1>
 
     <table>
         <tbody>
@@ -10,24 +10,24 @@
                 <td>{{ saleInvoice.id }}</td>
             </tr>
             <tr>
-                <th>Fileid</th>
-                <td>{{ saleInvoice.fileId }}</td>
-            </tr>
-            <tr>
-                <th>Taxid</th>
-                <td>{{ saleInvoice.taxId }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ saleInvoice.title }}</td>
-            </tr>
-            <tr>
-                <th>Number</th>
+                <th>Numer faktury</th>
                 <td>{{ saleInvoice.number }}</td>
             </tr>
             <tr>
-                <th>Amountnetto</th>
+                <th>Nazwa kontrahenta</th>
+                <td>{{ saleInvoice.contractors.name }}</td>
+            </tr>
+            <tr>
+                <th>Kwota netto</th>
                 <td>{{ saleInvoice.amountNetto }}</td>
+            </tr>
+            <tr>
+                <th>Kwota podatku VAT</th>
+                <td>{{ saleInvoice.taxId }}</td>
+            </tr>
+            <tr>
+                <th>Kwota brutto</th>
+                <td>{{ saleInvoice.amountBrutto }}</td>
             </tr>
             <tr>
                 <th>Kwota netto w walucie</th>
@@ -36,14 +36,6 @@
             <tr>
                 <th>Waluta</th>
                 <td>{{ saleInvoice.currency }}</td>
-            </tr>
-            <tr>
-                <th>Amountbrutto</th>
-                <td>{{ saleInvoice.amountBrutto }}</td>
-            </tr>
-            <tr>
-                <th>Nazwa kontrahenta</th>
-                <td>{{ saleInvoice.contractors.name }}</td>
             </tr>
             {% if saleInvoice.embeddedFile.name %}
                 <tr>
@@ -57,14 +49,14 @@
 
     <ul>
         <li>
-            <a href="{{ path('saleinvoice_index') }}">Back to the list</a>
+            <a href="{{ path('saleinvoice_index') }}">Powrót do listy</a>
         </li>
         <li>
-            <a href="{{ path('saleinvoice_edit', { 'id': saleInvoice.id }) }}">Edit</a>
+            <a href="{{ path('saleinvoice_edit', { 'id': saleInvoice.id }) }}">Edytuj</a>
         </li>
         <li>
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+                <input type="submit" value="Usuń">
             {{ form_end(delete_form) }}
         </li>
     </ul>

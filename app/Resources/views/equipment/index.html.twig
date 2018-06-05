@@ -15,8 +15,8 @@
                 <th scope="col">Wartość netto</th>
                 <th scope="col">Kogo sprzęt</th>
                 <th scope="col">Notatki</th>
-                <th scope="col">Akcje</th>
                 <th scope="col">Numer faktury</th>
+                <th scope="col">Akcje</th>
             </tr>
         </thead>
         <tbody>
@@ -31,17 +31,17 @@
                 <td>{{ equipment.wartoscNetto }}</td>
                 <td>{{ equipment.kogoSprzet }}</td>
                 <td>{{ equipment.notatki }}</td>
+                <td>{{ equipment.invoice ? equipment.invoice.number }}</td>
                 <td>
                     <ul>
                         <li>
-                            <a href="{{ path('equipment_show', { 'id': equipment.id }) }}">show</a>
+                            <a href="{{ path('equipment_show', { 'id': equipment.id }) }}">Pokaż</a>
                         </li>
                         <li>
-                            <a href="{{ path('equipment_edit', { 'id': equipment.id }) }}">edit</a>
+                            <a href="{{ path('equipment_edit', { 'id': equipment.id }) }}">Edytuj</a>
                         </li>
                     </ul>
                 </td>
-                <td>{{ equipment.invoice ? equipment.invoice.number }}</td>
             </tr>
         {% endfor %}
         </tbody>
@@ -50,7 +50,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('equipment_new') }}">Create a new entry</a>
+            <a href="{{ path('equipment_new') }}">Dodaj nowy sprzęt</a>
         </li>
     </ul>
 	

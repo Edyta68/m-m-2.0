@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Equipment</h1>
+    <h1>Sprzęt</h1>
 
     <table>
         <tbody>
@@ -10,7 +10,7 @@
                 <td>{{ equipment.id }}</td>
             </tr>
             <tr>
-                <th>Nrinwentarzowy</th>
+                <th>Nr inwentarzowy</th>
                 <td>{{ equipment.nrInwentarzowy }}</td>
             </tr>
             <tr>
@@ -18,23 +18,23 @@
                 <td>{{ equipment.nazwa }}</td>
             </tr>
             <tr>
-                <th>Nrseryjny</th>
+                <th>Nr seryjny</th>
                 <td>{{ equipment.nrSeryjny }}</td>
             </tr>
             <tr>
-                <th>Datazakupu</th>
+                <th>Data zakupu</th>
                 <td>{% if equipment.dataZakupu %}{{ equipment.dataZakupu|date('Y-m-d') }}{% endif %}</td>
             </tr>
             <tr>
-                <th>Termingwarancji</th>
+                <th>Termin gwarancji</th>
                 <td>{% if equipment.terminGwarancji %}{{ equipment.terminGwarancji|date('Y-m-d') }}{% endif %}</td>
             </tr>
             <tr>
-                <th>Wartoscnetto</th>
+                <th>Wartosc netto</th>
                 <td>{{ equipment.wartoscNetto }}</td>
             </tr>
             <tr>
-                <th>Kogosprzet</th>
+                <th>Kogo sprzet</th>
                 <td>{{ equipment.kogoSprzet }}</td>
             </tr>
             <tr>
@@ -50,14 +50,14 @@
 
     <ul>
         <li>
-            <a href="{{ path('equipment_index') }}">Back to the list</a>
+            <a href="{{ path('equipment_index') }}">Powrót do listy</a>
         </li>
         <li>
-            <a href="{{ path('equipment_edit', { 'id': equipment.id }) }}">Edit</a>
+            <a href="{{ path('equipment_edit', { 'id': equipment.id }) }}">Edytuj</a>
         </li>
         <li>
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+                <input type="submit" value="Usuń">
             {{ form_end(delete_form) }}
         </li>
     </ul>

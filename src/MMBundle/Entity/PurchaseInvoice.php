@@ -99,12 +99,6 @@ class PurchaseInvoice
      */
     private $taxId;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="title", type="string", length=255)
-     */
-    private $title;
 
     /**
      * @var string
@@ -219,30 +213,6 @@ class PurchaseInvoice
     public function getTaxId()
     {
         return $this->taxId;
-    }
-
-    /**
-     * Set title
-     *
-     * @param string $title
-     *
-     * @return PurchaseInvoice
-     */
-    public function setTitle($title)
-    {
-        $this->title = $title;
-
-        return $this;
-    }
-
-    /**
-     * Get title
-     *
-     * @return string
-     */
-    public function getTitle()
-    {
-        return $this->title;
     }
 
     /**

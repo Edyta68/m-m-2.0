@@ -90,12 +90,7 @@ class SaleInvoice
 
 
 
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="file_id", type="integer")
-     */
-    private $fileId;
+
 
     /**
      * @var integer
@@ -104,12 +99,6 @@ class SaleInvoice
      */
     private $taxId;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="title", type="string", length=255)
-     */
-    private $title;
 
     /**
      * @var string
@@ -164,29 +153,6 @@ class SaleInvoice
     }
 
 
-    /**
-     * Set fileId
-     *
-     * @param integer $fileId
-     *
-     * @return SaleInvoice
-     */
-    public function setFileId($fileId)
-    {
-        $this->fileId = $fileId;
-
-        return $this;
-    }
-
-    /**
-     * Get fileId
-     *
-     * @return integer
-     */
-    public function getFileId()
-    {
-        return $this->fileId;
-    }
 
     /**
      * Set taxId
@@ -212,29 +178,7 @@ class SaleInvoice
         return $this->taxId;
     }
 
-    /**
-     * Set title
-     *
-     * @param string $title
-     *
-     * @return SaleInvoice
-     */
-    public function setTitle($title)
-    {
-        $this->title = $title;
 
-        return $this;
-    }
-
-    /**
-     * Get title
-     *
-     * @return string
-     */
-    public function getTitle()
-    {
-        return $this->title;
-    }
 
     /**
      * Set number

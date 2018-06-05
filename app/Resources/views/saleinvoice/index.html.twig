@@ -1,44 +1,40 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>SaleInvoice list</h1>
+    <h1>Lista faktur sprzedaży</h1>
 
 	<table class="table table-striped" >
         <thead>
             <tr>
                 <th scope="col">Id</th>
-                <th scope="col">Fileid</th>
-                <th scope="col">Taxid</th>
-                <th scope="col">Title</th>
-                <th scope="col">Number</th>
-                <th scope="col">Amountnetto</th>
+                <th scope="col">Numer faktury</th>
+                <th scope="col">Nazwa kontrahenta</th>
+                <th scope="col">Kwota netto</th>
+                <th scope="col">Kwota podatku VAT</th>
+                <th scope="col">Kwota brutto</th>
                 <th scope="col">Kwota netto w walucie</th>
                 <th scope="col">Waluta</th>
-                <th scope="col">Amountbrutto</th>
-                <th scope="col">Nazwa kontrahenta</th>
-                <th scope="col">Actions</th>
+                <th scope="col">Akcje</th>
             </tr>
         </thead>
         <tbody>
         {% for saleInvoice in saleInvoices %}
             <tr>
                 <td scope="row"><a href="{{ path('saleinvoice_show', { 'id': saleInvoice.id }) }}">{{ saleInvoice.id }}</a></td>
-                <td>{{ saleInvoice.fileId }}</td>
-                <td>{{ saleInvoice.taxId }}</td>
-                <td>{{ saleInvoice.title }}</td>
                 <td>{{ saleInvoice.number }}</td>
+                <td>{{ saleInvoice.contractors ? saleInvoice.contractors.name }}</td>
                 <td>{{ saleInvoice.amountNetto }}</td>
+                <td>{{ saleInvoice.taxId }}</td>
+                <td>{{ saleInvoice.amountBrutto }}</td>
                 <td>{{ saleInvoice.amountNettoCurrency }}</td>
                 <td>{{ saleInvoice.currency }}</td>
-                <td>{{ saleInvoice.amountBrutto }}</td>
-                <td>{{ saleInvoice.contractors ? saleInvoice.contractors.name }}</td>
                 <td>
                     <ul>
                         <li>
-                            <a href="{{ path('saleinvoice_show', { 'id': saleInvoice.id }) }}">show</a>
+                            <a href="{{ path('saleinvoice_show', { 'id': saleInvoice.id }) }}">Pokaż</a>
                         </li>
                         <li>
-                            <a href="{{ path('saleinvoice_edit', { 'id': saleInvoice.id }) }}">edit</a>
+                            <a href="{{ path('saleinvoice_edit', { 'id': saleInvoice.id }) }}">Edytuj</a>
                         </li>
                     </ul>
                 </td>
@@ -50,7 +46,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('saleinvoice_new') }}">Create a new entry</a>
+            <a href="{{ path('saleinvoice_new') }}">Dodaj nową fakturę sprzedaży</a>
         </li>
     </ul>
 {% endblock %}
