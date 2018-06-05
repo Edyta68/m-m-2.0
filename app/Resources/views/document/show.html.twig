@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Document</h1>
+    <h1>Dokumenty</h1>
 
     <table>
         <tbody>
@@ -10,15 +10,15 @@
                 <td>{{ document.id }}</td>
             </tr>
             <tr>
-                <th>Idwlasne</th>
+                <th>Id własne</th>
                 <td>{{ document.iDWlasne }}</td>
             </tr>
             <tr>
-                <th>Datadokumentu</th>
+                <th>Data dokumentu</th>
                 <td>{% if document.dataDokumentu %}{{ document.dataDokumentu|date('Y-m-d') }}{% endif %}</td>
             </tr>
             <tr>
-                <th>Stronydokumentu</th>
+                <th>Strony dokumentu</th>
                 <td>{{ document.stronyDokumentu }}</td>
             </tr>
             <tr>
@@ -36,14 +36,14 @@
 
     <ul>
         <li>
-            <a href="{{ path('document_index') }}">Back to the list</a>
+            <a href="{{ path('document_index') }}">Powrót do listy</a>
         </li>
         <li>
             <a href="{{ path('document_edit', { 'id': document.id }) }}">Edit</a>
         </li>
         <li>
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+                <input type="submit" value="Usuń">
             {{ form_end(delete_form) }}
         </li>
     </ul>

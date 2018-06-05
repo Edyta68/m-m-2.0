@@ -7,7 +7,7 @@
         <thead>
             <tr>
                 <th scope="col">Id</th>
-                <th scope="col">Id wlasne</th>
+                <th scope="col">Id własne</th>
                 <th scope="col">Data dokumentu</th>
                 <th scope="col">Strony dokumentu</th>
                 <th scope="col">Notatka</th>
@@ -25,10 +25,10 @@
                 <td>
                     <ul>
                         <li>
-                            <a href="{{ path('document_show', { 'id': document.id }) }}">show</a>
+                            <a href="{{ path('document_show', { 'id': document.id }) }}">Pokaż</a>
                         </li>
                         <li>
-                            <a href="{{ path('document_edit', { 'id': document.id }) }}">edit</a>
+                            <a href="{{ path('document_edit', { 'id': document.id }) }}">Edytuj</a>
                         </li>
                     </ul>
                 </td>
@@ -40,7 +40,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('document_new') }}">Create a new entry</a>
+            <a href="{{ path('document_new') }}">Dodaj nowy dokument</a>
         </li>
     </ul>
 
