@@ -126,6 +126,20 @@ class SaleInvoice
     private $amountNetto;
 
     /**
+     * @var float
+     *
+     * @ORM\Column(name="amount_netto_currency", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $amountNettoCurrency;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="currency", type="string", length=20, nullable=true)
+     */
+    private $currency;
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="amount_brutto", type="integer")
@@ -268,6 +282,54 @@ class SaleInvoice
     public function getAmountNetto()
     {
         return $this->amountNetto;
+    }
+
+    /**
+     * Set amountNettoCurrency
+     *
+     * @param float $amountNettoCurrency
+     *
+     * @return SaleInvoice
+     */
+    public function setAmountNettoCurrency($amountNettoCurrency)
+    {
+        $this->amountNettoCurrency = $amountNettoCurrency;
+
+        return $this;
+    }
+
+    /**
+     * Get amountNettoCurrency
+     *
+     * @return float
+     */
+    public function getAmountNettoCurrency()
+    {
+        return $this->amountNettoCurrency;
+    }
+
+    /**
+     * Set currency
+     *
+     * @param string $currency
+     *
+     * @return SaleInvoice
+     */
+    public function setCurrency($currency)
+    {
+        $this->currency = $currency;
+
+        return $this;
+    }
+
+    /**
+     * Get currency
+     *
+     * @return string
+     */
+    public function getCurrency()
+    {
+        return $this->currency;
     }
 
     /**

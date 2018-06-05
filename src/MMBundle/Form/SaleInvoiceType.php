@@ -21,6 +21,8 @@ class SaleInvoiceType extends AbstractType
             ->add('title')
             ->add('number')
             ->add('amountNetto')
+            ->add('amountNettoCurrency')
+            ->add('currency')
             ->add('amountBrutto')
             ->add('contractors', 'entity', array(
                 'class' => 'MMBundle:Contractor',

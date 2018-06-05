@@ -11,6 +11,7 @@
                 <th scope="col">Godzina Wejścia</th>
                 <th scope="col">Godzina Wyjścia</th>
                 <th scope="col">Czas Pracy</th>
+                <th scope="col">Uwagi</th>
                 <th scope="col">Akcje</th>
             </tr>
         </thead>
@@ -22,6 +23,7 @@
                 <td>{% if attendance.godzinaWejscia %}{{ attendance.godzinaWejscia|date('H:i:s') }}{% endif %}</td>
                 <td>{% if attendance.godzinaWyjscia %}{{ attendance.godzinaWyjscia|date('H:i:s') }}{% endif %}</td>
                 <td>{{ attendance.czasPracy }}</td>
+                <td>{{ attendance.uwagi }}</td>
                 <td>
                     <ul>
                         <li>

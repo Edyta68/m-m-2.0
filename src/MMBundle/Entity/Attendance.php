@@ -49,6 +49,13 @@ class Attendance
      */
     private $czasPracy;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Uwagi", type="string", length=255, nullable=true)
+     */
+    private $uwagi;
+
 
 
     /**
@@ -155,5 +162,29 @@ class Attendance
     public function getCzasPracy()
     {
         return $this->czasPracy;
+    }
+
+    /**
+     * Set uwagi
+     *
+     * @param string $uwagi
+     *
+     * @return Attendance
+     */
+    public function setUwagi($uwagi)
+    {
+        $this->uwagi = $uwagi;
+
+        return $this;
+    }
+
+    /**
+     * Get uwagi
+     *
+     * @return string
+     */
+    public function getUwagi()
+    {
+        return $this->uwagi;
     }
 }

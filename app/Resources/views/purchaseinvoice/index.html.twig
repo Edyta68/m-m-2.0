@@ -12,6 +12,8 @@
                 <th scope="col">Title</th>
                 <th scope="col">Number</th>
                 <th scope="col">Amountnetto</th>
+                <th scope="col">Kwota netto w walucie</th>
+                <th scope="col">Waluta</th>
                 <th scope="col">Amountbrutto</th>
                 <th scope="col">Nazwa kontrahenta</th>
                 <th scope="col">Actions</th>
@@ -26,6 +28,8 @@
                 <td>{{ purchaseInvoice.title }}</td>
                 <td>{{ purchaseInvoice.number }}</td>
                 <td>{{ purchaseInvoice.amountNetto }}</td>
+                <td>{{ purchaseInvoice.amountNettoCurrency }}</td>
+                <td>{{ purchaseInvoice.currency }}</td>
                 <td>{{ purchaseInvoice.amountBrutto }}</td>
                 <td>{{ purchaseInvoice.contractors ? purchaseInvoice.contractors.name }}</td>
                 <td>
