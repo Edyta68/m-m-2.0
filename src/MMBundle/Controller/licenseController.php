@@ -22,11 +22,18 @@ class licenseController extends Controller
      * @Route("/", name="license_index")
      * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $licenses = $em->getRepository('MMBundle:license')->findAll();
+        $dql   = "SELECT a FROM MMBundle:license a";
+        $query = $em->createQuery($dql);
+        $paginator  = $this->get('knp_paginator');
+
+        $licenses = $paginator->paginate(
+            $query, /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            10);
 
         return $this->render('license/index.html.twig', array(
             'licenses' => $licenses,
