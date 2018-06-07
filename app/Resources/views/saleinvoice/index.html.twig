@@ -7,6 +7,7 @@
         <thead>
             <tr>
                 <th scope="col">Id</th>
+                <th scope="col">Data faktury</th>
                 <th scope="col">Numer faktury</th>
                 <th scope="col">Nazwa kontrahenta</th>
                 <th scope="col">Kwota netto</th>
@@ -21,6 +22,7 @@
         {% for saleInvoice in saleInvoices %}
             <tr>
                 <td scope="row"><a href="{{ path('saleinvoice_show', { 'id': saleInvoice.id }) }}">{{ saleInvoice.id }}</a></td>
+                <td>{% if saleInvoice.data %}{{ saleInvoice.data|date('Y-m-d') }}{% endif %}</td>
                 <td>{{ saleInvoice.number }}</td>
                 <td>{{ saleInvoice.contractors ? saleInvoice.contractors.name }}</td>
                 <td>{{ saleInvoice.amountNetto }}</td>

@@ -17,6 +17,7 @@ class SaleInvoiceType extends AbstractType
     {
         $builder
             ->add('number')
+            ->add('data', 'date')
             ->add('contractors', 'entity', array(
                 'class' => 'MMBundle:Contractor',
                 'choice_label' => 'name',))

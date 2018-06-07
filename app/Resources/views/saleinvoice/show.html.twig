@@ -10,6 +10,15 @@
                 <td>{{ saleInvoice.id }}</td>
             </tr>
             <tr>
+                <th>Data faktury</th>
+            <td>
+                {% if saleInvoice.data %}
+                    {{ saleInvoice.data|date('Y-m-d') }}
+                {% endif %}
+            </td>
+            </tr>
+
+            <tr>
                 <th>Numer faktury</th>
                 <td>{{ saleInvoice.number }}</td>
             </tr>

@@ -141,6 +141,13 @@ class SaleInvoice
     protected $contractors;
 
 
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="Data", type="date")
+     */
+    private $data;
+
 
     /**
      * Get id
@@ -153,6 +160,20 @@ class SaleInvoice
     }
 
 
+
+    /**
+     * Set data
+     *
+     * @param \DateTime $data
+     *
+     * @return SaleInvoice
+     */
+    public function setData($data)
+    {
+        $this->data = $data;
+
+        return $this;
+    }
 
     /**
      * Set taxId
@@ -176,6 +197,17 @@ class SaleInvoice
     public function getTaxId()
     {
         return $this->taxId;
+    }
+
+
+    /**
+     * Get data
+     *
+     * @return \DateTime
+     */
+    public function getData()
+    {
+        return $this->data;
     }
 
 
