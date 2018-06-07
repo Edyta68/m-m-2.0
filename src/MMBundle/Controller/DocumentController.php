@@ -2,6 +2,7 @@
 
 namespace MMBundle\Controller;
 
+use AppBundle\Security\DocumentVoter;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -26,8 +27,12 @@ class DocumentController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $em = $this->getDoctrine()->getManager();
 
+        if ($this->get('security.authorization_checker')->isGranted('ROLE_PRACOWNIK')) {
+            throw new \LogicException('This code should not be reached!');
+        }
+
+        $em = $this->getDoctrine()->getManager();
 
 		$form = $this->createForm(new DocumentSearchType());
 		$form->handleRequest($request);
@@ -66,7 +71,12 @@ class DocumentController extends Controller
      */
     public function newAction(Request $request)
     {
+
+
         $document = new Document();
+        if(!$this->isGranted(DocumentVoter::VIEW, $document)){
+            throw new \LogicException('This code should not be reached!');
+        }
         $form = $this->createForm(new DocumentType(), $document);
         $form->handleRequest($request);
 
@@ -92,6 +102,13 @@ class DocumentController extends Controller
      */
     public function showAction(Document $document)
     {
+
+        if(!$this->isGranted(DocumentVoter::VIEW, $document)){
+            throw new \LogicException('This code should not be reached!');
+        }
+
+
+
         $deleteForm = $this->createDeleteForm($document);
 
         return $this->render('document/show.html.twig', array(
@@ -108,6 +125,11 @@ class DocumentController extends Controller
      */
     public function editAction(Request $request, Document $document)
     {
+
+        if(!$this->isGranted(DocumentVoter::EDIT, $document)){
+            throw new \LogicException('This code should not be reached!');
+        }
+
         $deleteForm = $this->createDeleteForm($document);
         $editForm = $this->createForm(new DocumentType(), $document);
         $editForm->handleRequest($request);

@@ -2,6 +2,7 @@
 
 namespace MMBundle\Controller;
 
+use AppBundle\Security\AttendanceVoter;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -95,6 +96,11 @@ class AttendanceController extends Controller
      */
     public function editAction(Request $request, Attendance $attendance)
     {
+
+        if(!$this->isGranted(AttendanceVoter::FULLACCES, $attendance)){
+            throw new \LogicException('This code should not be reached!');
+        }
+
         $deleteForm = $this->createDeleteForm($attendance);
         $editForm = $this->createForm(new AttendanceType(), $attendance);
         $editForm->handleRequest($request);

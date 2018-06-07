@@ -2,6 +2,7 @@
 
 namespace MMBundle\Controller;
 
+use AppBundle\Security\SaleInvoiceVoter;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -26,6 +27,10 @@ class SaleInvoiceController extends Controller
      */
     public function indexAction(Request $request)
     {
+
+        if ($this->get('security.authorization_checker')->isGranted('ROLE_PRACOWNIK')) {
+            throw new \LogicException('This code should not be reached!');
+        }
         $em = $this->getDoctrine()->getManager();
 
 		
@@ -70,6 +75,9 @@ class SaleInvoiceController extends Controller
     public function newAction(Request $request)
     {
         $SaleInvoice = new SaleInvoice();
+        if(!$this->isGranted(SaleInvoiceVoter::VIEW, $SaleInvoice)){
+            throw new \LogicException('This code should not be reached!');
+        }
         $form = $this->createForm(new SaleInvoiceType(), $SaleInvoice);
         $form->handleRequest($request);
 
@@ -95,6 +103,7 @@ class SaleInvoiceController extends Controller
      */
     public function showAction(SaleInvoice $saleInvoice)
     {
+
         $deleteForm = $this->createDeleteForm($saleInvoice);
 
         return $this->render('saleinvoice/show.html.twig', array(
@@ -111,6 +120,9 @@ class SaleInvoiceController extends Controller
      */
     public function editAction(Request $request, SaleInvoice $saleInvoice)
     {
+        if(!$this->isGranted(SaleInvoiceVoter::VIEW, $saleInvoice)){
+            throw new \LogicException('This code should not be reached!');
+        }
         $deleteForm = $this->createDeleteForm($saleInvoice);
         $editForm = $this->createForm(new SaleInvoiceType(), $saleInvoice);
         $editForm->handleRequest($request);
@@ -138,6 +150,7 @@ class SaleInvoiceController extends Controller
      */
     public function deleteAction(Request $request, SaleInvoice $saleInvoice)
     {
+
         $form = $this->createDeleteForm($saleInvoice);
         $form->handleRequest($request);
 

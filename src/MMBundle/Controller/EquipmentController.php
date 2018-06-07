@@ -27,6 +27,11 @@ class EquipmentController extends Controller
      */
     public function indexAction(Request $request)
     {
+
+        if ($this->get('security.authorization_checker')->isGranted('ROLE_PRACOWNIK')) {
+            throw new \LogicException('This code should not be reached!');
+        }
+
         $em = $this->getDoctrine()->getManager();
 
 

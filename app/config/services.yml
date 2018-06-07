@@ -4,6 +4,22 @@ parameters:
 #    parameter_name: value
 
 services:
-#    service_name:
-#        class: AppBundle\Directory\ClassName
-#        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+    app.post_voter:
+        class:  AppBundle\Security\DocumentVoter
+        tags:
+            - { name: security.voter }
+        # small performance boost
+        public: false
+
+    app.saleinvoice_voter:
+            class:  AppBundle\Security\SaleInvoiceVoter
+            tags:
+                - { name: security.voter }
+            # small performance boost
+            public: false
+    app.attendance_voter:
+                class:  AppBundle\Security\AttendanceVoter
+                tags:
+                    - { name: security.voter }
+                # small performance boost
+                public: false
