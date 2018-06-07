@@ -20,7 +20,7 @@
             </tr>
         </thead>
         <tbody>
-        {% for purchaseInvoice in pagination %}
+        {% for purchaseInvoice in purchaseInvoices %}
             <tr>
                 <td scope="row"><a href="{{ path('purchaseinvoice_show', { 'id': purchaseInvoice.id }) }}">{{ purchaseInvoice.id }}</a></td>
                 <td>{{ purchaseInvoice.fileId }}</td>
@@ -46,7 +46,7 @@
         {% endfor %}
         </tbody>
     </table>
-	{{ knp_pagination_render(pagination) }}
+	{{ knp_pagination_render(purchaseInvoices) }}
 
     <ul>
         <li>
@@ -62,6 +62,13 @@
 				<input type="submit" value="Wyszukaj" />
 			{{ form_end(form) }}			
 		</div>
-	
-	
+
+    <div>
+        <h1>Filtrowanie</h1>
+        {{ form_start(formfilter) }}
+        {{ form_widget(formfilter) }}
+        <input type="submit" value="Filtruj" />
+        {{ form_end(formfilter) }}
+    </div>
+
 {% endblock %}

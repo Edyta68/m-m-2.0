@@ -2,6 +2,7 @@
 
 namespace MMBundle\Controller;
 
+use MMBundle\Form\PurchaseInvoiceFilterType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -46,20 +47,48 @@ class PurchaseInvoiceController extends Controller
 			
 
 		}
-		
+
+
+
+
+        $formfilter = $this->createForm(new PurchaseInvoiceFilterType());
+        $formfilter->handleRequest($request);
+
+        if ($formfilter->isSubmitted() && $formfilter->isValid()) {
+            $purchaseInvoice = $em->getRepository('MMBundle:PurchaseInvoice')->filter($formfilter);
+
+
+            $paginator = $this->get('knp_paginator');
+
+            $purchaseInvoice = $paginator->paginate(
+                $purchaseInvoice, /* query NOT result */
+                $request->query->getInt('page', 1)/*page number*/,
+                10
+            );
+
+
+            return $this->render('PurchaseInvoice/index.html.twig', array(
+                'purchaseInvoices' => $purchaseInvoice,
+                'formfilter' => $formfilter->createView(),
+                'form' => $form->createView()
+            ));
+        }
+
+
 		$dql   = "SELECT a FROM MMBundle:PurchaseInvoice a";
 		$query = $em->createQuery($dql);
 		$paginator  = $this->get('knp_paginator');			
 		
-		$pagination = $paginator->paginate(
+		$purchaseInvoices = $paginator->paginate(
 			$query, /* query NOT result */
 			$request->query->getInt('page', 1)/*page number*/,
 			10
 		);
 		
         return $this->render('purchaseinvoice/index.html.twig', array(
-			'pagination' => $pagination,
+			'purchaseInvoices' => $purchaseInvoices,
 			'form' => $form->createView(),
+            'formfilter' => $formfilter->createView(),
         ));
     }
 
