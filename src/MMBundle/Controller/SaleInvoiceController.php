@@ -3,6 +3,8 @@
 namespace MMBundle\Controller;
 
 use AppBundle\Security\SaleInvoiceVoter;
+use MMBundle\Form\DocumentFilterType;
+use MMBundle\Form\SaleInvoiceFilterType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -48,7 +50,41 @@ class SaleInvoiceController extends Controller
 				'form' => $form->createView(),
 			));		
 		}
-		
+
+
+
+        $formfilter = $this->createForm(new SaleInvoiceFilterType());
+        $formfilter->handleRequest($request);
+
+        if ($formfilter->isSubmitted() && $formfilter->isValid()) {
+            $saleInvoice = $em->getRepository('MMBundle:SaleInvoice')->filter($formfilter);
+
+
+            $paginator = $this->get('knp_paginator');
+
+            $saleInvoice = $paginator->paginate(
+                $saleInvoice, /* query NOT result */
+                $request->query->getInt('page', 1)/*page number*/,
+                10
+            );
+
+
+            return $this->render('SaleInvoice/index.html.twig', array(
+                'saleInvoices' => $saleInvoice,
+                'formfilter' => $formfilter->createView(),
+                'form' => $form->createView()
+            ));
+        }
+
+
+
+
+
+
+
+
+
+
         
 		$dql   = "SELECT a FROM MMBundle:SaleInvoice a";
 		$query = $em->createQuery($dql);
@@ -63,6 +99,7 @@ class SaleInvoiceController extends Controller
         return $this->render('saleinvoice/index.html.twig', array(
             'saleInvoices' => $saleInvoices,
 			'form' => $form->createView(),
+            'formfilter' => $formfilter->createView(),
         ));
     }
 

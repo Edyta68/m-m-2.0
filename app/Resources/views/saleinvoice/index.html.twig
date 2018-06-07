@@ -44,11 +44,23 @@
         {% endfor %}
         </tbody>
     </table>
-	{{ knp_pagination_render(saleInvoices) }}
+    {{ knp_pagination_render(saleInvoices) }}
+
 
     <ul>
         <li>
             <a href="{{ path('saleinvoice_new') }}">Dodaj nową fakturę sprzedaży</a>
         </li>
     </ul>
+
+
+    <div>
+        <h1>Filtrowanie</h1>
+        {{ form_start(formfilter) }}
+        {{ form_widget(formfilter) }}
+        <input type="submit" value="Filtruj" />
+        {{ form_end(formfilter) }}
+    </div>
+
+
 {% endblock %}
