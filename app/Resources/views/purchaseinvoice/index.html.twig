@@ -8,6 +8,7 @@
             <tr>
                 <th scope="col">Id</th>
                 <th scope="col">Id własne</th>
+                <th scope="col">Data faktury</th>
                 <th scope="col">Numer faktury</th>
                 <th scope="col">Nazwa kontrahenta</th>
                 <th scope="col">Kwota netto</th>
@@ -23,6 +24,7 @@
             <tr>
                 <td scope="row"><a href="{{ path('purchaseinvoice_show', { 'id': purchaseInvoice.id }) }}">{{ purchaseInvoice.id }}</a></td>
                 <td>{{ purchaseInvoice.fileId }}</td>
+                <td>{% if purchaseInvoice.data %}{{ purchaseInvoice.data|date('Y-m-d') }}{% endif %}</td>
                 <td>{{ purchaseInvoice.number }}</td>
                 <td>{{ purchaseInvoice.contractors ? purchaseInvoice.contractors.name }}</td>
                 <td>{{ purchaseInvoice.amountNetto }}</td>

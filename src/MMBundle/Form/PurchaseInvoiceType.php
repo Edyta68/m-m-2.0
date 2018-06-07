@@ -18,6 +18,7 @@ class PurchaseInvoiceType extends AbstractType
         $builder
             ->add('fileId')
             ->add('number')
+            ->add('data', 'date')
             ->add('contractors', 'entity', array(
                 'class' => 'MMBundle:Contractor',
                 'choice_label' => 'name',))

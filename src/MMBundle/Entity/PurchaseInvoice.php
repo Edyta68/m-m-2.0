@@ -147,6 +147,16 @@ class PurchaseInvoice
      */
     protected $contractors;
 
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="Data", type="date")
+     */
+    private $data;
+
+
+
     /**
      * Constructor
      */
@@ -174,6 +184,24 @@ class PurchaseInvoice
      *
      * @return PurchaseInvoice
      */
+
+
+    /**
+     * Set data
+     *
+     * @param \DateTime $data
+     *
+     * @return PurchaseInvoice
+     */
+    public function setData($data)
+    {
+        $this->data = $data;
+
+        return $this;
+    }
+
+
+
     public function setFileId($fileId)
     {
         $this->fileId = $fileId;
@@ -214,6 +242,17 @@ class PurchaseInvoice
     {
         return $this->taxId;
     }
+
+    /**
+     * Get data
+     *
+     * @return \DateTime
+     */
+    public function getData()
+    {
+        return $this->data;
+    }
+
 
     /**
      * Set number

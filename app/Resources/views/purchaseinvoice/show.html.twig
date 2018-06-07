@@ -14,6 +14,13 @@
                 <td>{{ purchaseInvoice.fileId }}</td>
             </tr>
             <tr>
+                <th>Data faktury</th>
+                <td>
+                    {% if purchaseInvoice.data %}
+                        {{ purchaseInvoice.data|date('Y-m-d') }}
+                    {% endif %}
+                </td>
+            <tr>
                 <th>Numer faktury</th>
                 <td>{{ purchaseInvoice.number }}</td>
             </tr>
