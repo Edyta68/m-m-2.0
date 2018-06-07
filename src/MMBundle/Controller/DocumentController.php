@@ -3,6 +3,7 @@
 namespace MMBundle\Controller;
 
 use AppBundle\Security\DocumentVoter;
+use MMBundle\Form\DocumentFilterType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -44,8 +45,34 @@ class DocumentController extends Controller
 				'documents' => $documents,
 				'form' => $form->createView()
 			));			
-		}		
-		
+		}
+
+        $formfilter = $this->createForm(new DocumentFilterType());
+        $formfilter->handleRequest($request);
+
+        if ($formfilter->isSubmitted() && $formfilter->isValid()) {
+            $documents = $em->getRepository('MMBundle:Document')->filter($formfilter);
+
+
+            $paginator = $this->get('knp_paginator');
+
+            $documents = $paginator->paginate(
+                $documents, /* query NOT result */
+                $request->query->getInt('page', 1)/*page number*/,
+                10
+            );
+
+
+            return $this->render('document/index.html.twig', array(
+                'documents' => $documents,
+                'formfilter' => $formfilter->createView(),
+                'form' => $form->createView()
+            ));
+        }
+
+
+
+
 
 		$dql   = "SELECT a FROM MMBundle:Document a";
 		$query = $em->createQuery($dql);
@@ -59,7 +86,8 @@ class DocumentController extends Controller
 		
         return $this->render('document/index.html.twig', array(
             'documents' => $documents,
-			'form' => $form->createView()
+			'form' => $form->createView(),
+            'formfilter' => $formfilter->createView()
         ));
     }
 

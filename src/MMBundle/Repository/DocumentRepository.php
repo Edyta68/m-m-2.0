@@ -21,4 +21,18 @@ class DocumentRepository extends \Doctrine\ORM\EntityRepository
 		
 		return $qb->getQuery()->getResult();		
 	}
+
+
+    public function filter($form) {
+        $qb = $this->createQueryBuilder('d');
+
+        if(!empty($form->get('dataDokumentu')->getData())) {
+            $qb->orWhere('d.dataDokumentu = :data')
+                ->setParameter('data', $form->get('dataDokumentu')->getData());
+
+        }
+
+        return $qb->getQuery();
+    }
+
 }

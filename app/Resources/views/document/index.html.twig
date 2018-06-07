@@ -51,6 +51,12 @@
 			<input type="submit" value="Wyszukaj" />
 		{{ form_end(form) }}			
 	</div>
-	
-	
+    <div>
+        <h1>Filtrowanie</h1>
+        {{ form_start(formfilter) }}
+        {{ form_widget(formfilter) }}
+        <input type="submit" value="Filtruj" />
+        {{ form_end(formfilter) }}
+    </div>
+
 {% endblock %}
