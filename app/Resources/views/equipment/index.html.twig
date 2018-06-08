@@ -35,10 +35,14 @@
                 <td>
                     <ul>
                         <li>
+                            {% if (is_granted('edit', equipment)) %}
                             <a href="{{ path('equipment_show', { 'id': equipment.id }) }}">Pokaż</a>
+                            {% endif %}
                         </li>
                         <li>
+                            {% if (is_granted('edit', equipment)) %}
                             <a href="{{ path('equipment_edit', { 'id': equipment.id }) }}">Edytuj</a>
+                            {% endif %}
                         </li>
                     </ul>
                 </td>

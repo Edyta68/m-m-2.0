@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use MMBundle\Entity\Equipment;
+use AppBundle\Security\EquipmentVoter;
 use MMBundle\Entity\PurchaseInvoice;
 use MMBundle\Form\EquipmentType;
 use MMBundle\Form\EquipmentSearchType;
@@ -37,26 +38,26 @@ class EquipmentController extends Controller
 
 		$form = $this->createForm(new EquipmentSearchType());
 		$form->handleRequest($request);
-		
+
 		if($form->isSubmitted() && $form->isValid()) {
 			$equipment = $em->getRepository('MMBundle:Equipment')->search($form);
-		
+
 			return $this->render('equipment/index.html.twig', array(
 				'equipment' => $equipment,
 				'form' => $form->createView()
-			));			
+			));
 		}
-		
+
 		$dql   = "SELECT a FROM MMBundle:Equipment a";
 		$query = $em->createQuery($dql);
-		$paginator  = $this->get('knp_paginator');			
-		
+		$paginator  = $this->get('knp_paginator');
+
 		$equipment = $paginator->paginate(
 			$query, /* query NOT result */
 			$request->query->getInt('page', 1)/*page number*/,
 			10
 		);
-		
+
         return $this->render('equipment/index.html.twig', array(
             'equipment' => $equipment,
 			'form' => $form->createView()
@@ -72,6 +73,9 @@ class EquipmentController extends Controller
     public function newAction(Request $request)
     {
         $equipment = new Equipment();
+        if(!$this->isGranted(EquipmentVoter::VIEW, $equipment)){
+            throw new \LogicException('This code should not be reached!');
+        }
         $form = $this->createForm(new EquipmentType(), $equipment);
         $form->handleRequest($request);
 
@@ -97,6 +101,9 @@ class EquipmentController extends Controller
      */
     public function showAction(Equipment $equipment)
     {
+        if(!$this->isGranted(EquipmentVoter::VIEW, $equipment)){
+            throw new \LogicException('This code should not be reached!');
+        }
         $deleteForm = $this->createDeleteForm($equipment);
 
         return $this->render('equipment/show.html.twig', array(
@@ -113,6 +120,9 @@ class EquipmentController extends Controller
      */
     public function editAction(Request $request, Equipment $equipment)
     {
+        if(!$this->isGranted(EquipmentVoter::VIEW, $equipment)){
+            throw new \LogicException('This code should not be reached!');
+        }
         $deleteForm = $this->createDeleteForm($equipment);
         $editForm = $this->createForm(new EquipmentType(), $equipment);
         $editForm->handleRequest($request);
@@ -140,6 +150,9 @@ class EquipmentController extends Controller
      */
     public function deleteAction(Request $request, Equipment $equipment)
     {
+        if(!$this->isGranted(EquipmentVoter::VIEW, $equipment)){
+            throw new \LogicException('This code should not be reached!');
+        }
         $form = $this->createDeleteForm($equipment);
         $form->handleRequest($request);
 

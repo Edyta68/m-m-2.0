@@ -22,6 +22,9 @@ class ContractorController extends Controller
      */
     public function indexAction()
     {
+        if (!$this->get('security.authorization_checker')->isGranted('ROLE_ADMIN') ) {
+            throw new \LogicException('This code should not be reached!');
+        }
         $em = $this->getDoctrine()->getManager();
 
         $contractors = $em->getRepository('MMBundle:Contractor')->findAll();
