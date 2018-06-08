@@ -37,11 +37,16 @@ class PurchaseInvoiceController extends Controller
         $form = $this->createForm(new PurchaseInvoiceSearchType());
 		$form->handleRequest($request);
 
+        $formfilter = $this->createForm(new PurchaseInvoiceFilterType());
+        $formfilter->handleRequest($request);
+
+
 		if($form->isSubmitted() && $form->isValid()) {
 			$purchaseInvoices = $em->getRepository('MMBundle:PurchaseInvoice')->search($form);
 
 			return $this->render('purchaseinvoice/index.html.twig', array(
 				'purchaseInvoices' => $purchaseInvoices,
+                'formfilter' => $formfilter->createView(),
 				'form' => $form->createView(),
 			));			
 			
@@ -51,8 +56,6 @@ class PurchaseInvoiceController extends Controller
 
 
 
-        $formfilter = $this->createForm(new PurchaseInvoiceFilterType());
-        $formfilter->handleRequest($request);
 
         if ($formfilter->isSubmitted() && $formfilter->isValid()) {
             $purchaseInvoice = $em->getRepository('MMBundle:PurchaseInvoice')->filter($formfilter);

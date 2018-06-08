@@ -38,23 +38,25 @@ class SaleInvoiceController extends Controller
 		
         $form = $this->createForm(new SaleInvoiceSearchType());
 		$form->handleRequest($request);
-		
-		
-		if($form->isSubmitted()) {
+
+        $formfilter = $this->createForm(new SaleInvoiceFilterType());
+        $formfilter->handleRequest($request);
+
+
+        if($form->isSubmitted()) {
 
 			$saleInvoices = $em->getRepository('MMBundle:SaleInvoice')->search($form);
 
 
 			return $this->render('saleinvoice/index.html.twig', array(
 				'saleInvoices' => $saleInvoices,
+                'formfilter' => $formfilter->createView(),
 				'form' => $form->createView(),
 			));		
 		}
 
 
 
-        $formfilter = $this->createForm(new SaleInvoiceFilterType());
-        $formfilter->handleRequest($request);
 
         if ($formfilter->isSubmitted() && $formfilter->isValid()) {
             $saleInvoice = $em->getRepository('MMBundle:SaleInvoice')->filter($formfilter);

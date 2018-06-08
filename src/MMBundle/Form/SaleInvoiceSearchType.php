@@ -15,8 +15,6 @@ class SaleInvoiceSearchType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('contractorId')
-            ->add('taxId')
             ->add('number')
         ;
     }

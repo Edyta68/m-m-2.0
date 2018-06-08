@@ -38,17 +38,18 @@ class DocumentController extends Controller
 		$form = $this->createForm(new DocumentSearchType());
 		$form->handleRequest($request);
 
+        $formfilter = $this->createForm(new DocumentFilterType());
+        $formfilter->handleRequest($request);
+
 		if($form->isSubmitted() && $form->isValid()) {
 			$documents = $em->getRepository('MMBundle:Document')->search($form);
 		
 			return $this->render('document/index.html.twig', array(
 				'documents' => $documents,
+                'formfilter' => $formfilter->createView(),
 				'form' => $form->createView()
 			));			
 		}
-
-        $formfilter = $this->createForm(new DocumentFilterType());
-        $formfilter->handleRequest($request);
 
         if ($formfilter->isSubmitted() && $formfilter->isValid()) {
             $documents = $em->getRepository('MMBundle:Document')->filter($formfilter);
