@@ -23,3 +23,10 @@ services:
                     - { name: security.voter }
                 # small performance boost
                 public: false
+
+    app.license_voter:
+                    class:  AppBundle\Security\LicenseVoter
+                    tags:
+                        - { name: security.voter }
+                    # small performance boost
+                    public: false

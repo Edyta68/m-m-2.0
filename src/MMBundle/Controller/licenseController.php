@@ -2,6 +2,7 @@
 
 namespace MMBundle\Controller;
 
+use AppBundle\Security\LicenseVoter;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -24,6 +25,11 @@ class licenseController extends Controller
      */
     public function indexAction(Request $request)
     {
+
+        if ($this->get('security.authorization_checker')->isGranted('ROLE_PRACOWNIK')) {
+            throw new \LogicException('This code should not be reached!');
+        }
+
         $em = $this->getDoctrine()->getManager();
 
         $dql   = "SELECT a FROM MMBundle:license a";
@@ -49,6 +55,9 @@ class licenseController extends Controller
     public function newAction(Request $request)
     {
         $license = new license();
+        if(!$this->isGranted(LicenseVoter::VIEW, $license)){
+            throw new \LogicException('This code should not be reached!');
+        }
         $form = $this->createForm(new licenseType(), $license);
         $form->handleRequest($request);
 
@@ -74,6 +83,9 @@ class licenseController extends Controller
      */
     public function showAction(license $license)
     {
+        if(!$this->isGranted(LicenseVoter::VIEW, $license)){
+            throw new \LogicException('This code should not be reached!');
+        }
         $deleteForm = $this->createDeleteForm($license);
 
         return $this->render('license/show.html.twig', array(
@@ -90,6 +102,9 @@ class licenseController extends Controller
      */
     public function editAction(Request $request, license $license)
     {
+        if(!$this->isGranted(LicenseVoter::VIEW, $license)){
+            throw new \LogicException('This code should not be reached!');
+        }
         $deleteForm = $this->createDeleteForm($license);
         $editForm = $this->createForm(new licenseType(), $license);
         $editForm->handleRequest($request);
@@ -117,6 +132,9 @@ class licenseController extends Controller
      */
     public function deleteAction(Request $request, license $license)
     {
+        if(!$this->isGranted(LicenseVoter::VIEW, $license)){
+            throw new \LogicException('This code should not be reached!');
+        }
         $form = $this->createDeleteForm($license);
         $form->handleRequest($request);
 

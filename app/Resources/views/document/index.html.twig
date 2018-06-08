@@ -25,10 +25,14 @@
                 <td>
                     <ul>
                         <li>
+                            {% if (is_granted('edit', document)) %}
                             <a href="{{ path('document_show', { 'id': document.id }) }}">Pokaż</a>
+                            {% endif %}
                         </li>
                         <li>
+                            {% if (is_granted('edit', document)) %}
                             <a href="{{ path('document_edit', { 'id': document.id }) }}">Edytuj</a>
+                            {% endif %}
                         </li>
                     </ul>
                 </td>
