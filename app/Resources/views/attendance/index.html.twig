@@ -45,4 +45,16 @@
             <a href="{{ path('attendance_new') }}">Dodaj obecność</a>
         </li>
     </ul>
+
+
+    <div>
+        <h1>Filtrowanie</h1>
+        {{ form_start(formfilter) }}
+        {{ form_widget(formfilter) }}
+        <input type="submit" value="Filtruj" />
+        {{ form_end(formfilter) }}
+    </div>
+
+
+
 {% endblock %}

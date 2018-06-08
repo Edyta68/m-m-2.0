@@ -32,4 +32,16 @@ class SaleInvoiceRepository extends \Doctrine\ORM\EntityRepository
 		return $qb->getQuery()->getResult();
 
 	}
+
+    public function filter($form) {
+        $qb = $this->createQueryBuilder('d');
+
+        if(!empty($form->get('data')->getData())) {
+            $qb->orWhere('d.data = :data')
+                ->setParameter('data', $form->get('data')->getData());
+
+        }
+
+        return $qb->getQuery();
+    }
 }
