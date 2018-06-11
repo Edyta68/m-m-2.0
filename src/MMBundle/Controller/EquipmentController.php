@@ -12,6 +12,7 @@ use MMBundle\Entity\PurchaseInvoice;
 use MMBundle\Form\EquipmentType;
 use MMBundle\Form\EquipmentSearchType;
 use Knp\Bundle\PaginatorBundle\KnpPaginatorBundle;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Equipment controller.
@@ -64,6 +65,33 @@ class EquipmentController extends Controller
         ));
     }
 
+    /**
+     * Creates a new Equipment entity.
+     *
+     * @Route("/jsoninfo", name="equipment_jsoninfo")
+     * @Method({"GET"})
+     */
+	public function getExtraInfoInJsonAction(Request $request) {
+		
+        $em = $this->getDoctrine()->getManager();
+		
+
+		$query = $em->createQuery(
+			'SELECT c
+			FROM MMBundle:Equipment c'
+		);
+		$categorias = $query->getArrayResult();		
+		
+		$response = new Response(json_encode($categorias));
+		$response->headers->set('Content-Type', 'application/json');
+		
+		$json_info = "asddsa";
+		
+        return $this->render('equipment/jsoninfo.html.twig', array(
+			'json_info' => $response
+        ));
+	}
+	
     /**
      * Creates a new Equipment entity.
      *
