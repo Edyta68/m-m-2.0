@@ -82,11 +82,9 @@ class EquipmentController extends Controller
 		);
 		$eqs = $query->getArrayResult();		
 		
-		$response = new Response(json_encode($eqs));
-		$response->headers->set('Content-Type', 'application/json');
 		
         return $this->render('equipment/jsoninfo.html.twig', array(
-			'json_info' => $response
+			'json_info' => json_encode($eqs)
         ));
 	}
 	
