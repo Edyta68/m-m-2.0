@@ -77,15 +77,13 @@ class EquipmentController extends Controller
 		
 
 		$query = $em->createQuery(
-			'SELECT c
+			'SELECT c.nazwa, c.nrSeryjny
 			FROM MMBundle:Equipment c'
 		);
-		$categorias = $query->getArrayResult();		
+		$eqs = $query->getArrayResult();		
 		
-		$response = new Response(json_encode($categorias));
+		$response = new Response(json_encode($eqs));
 		$response->headers->set('Content-Type', 'application/json');
-		
-		$json_info = "asddsa";
 		
         return $this->render('equipment/jsoninfo.html.twig', array(
 			'json_info' => $response
