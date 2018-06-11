@@ -107,6 +107,26 @@ class EquipmentController extends Controller
             'json_info' => json_encode($eqs)
         ));
     }
+
+    /**
+     * Create json
+     *
+     * @Route("/jsoninfo3", name="equipment_jsoninfo3")
+     * @Method({"GET"})
+     */
+    public function createJson(Request $request) {
+
+        $em = $this->getDoctrine()->getManager();
+        $query = $em->createQuery(
+            'SELECT c.nazwa, c.wartoscNetto
+			FROM MMBundle:Equipment c WHERE c.wartoscNetto>500'
+        );
+        $eqs = $query->getArrayResult();
+
+        return $this->render('equipment/jsoninfo3.html.twig', array(
+            'json_info' => json_encode($eqs)
+        ));
+    }
 	
     /**
      * Creates a new Equipment entity.
