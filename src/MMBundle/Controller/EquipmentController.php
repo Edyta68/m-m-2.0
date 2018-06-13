@@ -12,6 +12,7 @@ use MMBundle\Entity\PurchaseInvoice;
 use MMBundle\Form\EquipmentType;
 use MMBundle\Form\EquipmentSearchType;
 use Knp\Bundle\PaginatorBundle\KnpPaginatorBundle;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Equipment controller.
@@ -64,6 +65,69 @@ class EquipmentController extends Controller
         ));
     }
 
+    /**
+     * Creates a new Equipment entity.
+     *
+     * @Route("/jsoninfo", name="equipment_jsoninfo")
+     * @Method({"GET"})
+     */
+	public function getExtraInfoInJsonAction(Request $request) {
+		
+        $em = $this->getDoctrine()->getManager();
+		
+
+		$query = $em->createQuery(
+			'SELECT c.nazwa, c.nrSeryjny
+			FROM MMBundle:Equipment c'
+		);
+		$eqs = $query->getArrayResult();		
+		
+		
+        return $this->render('equipment/jsoninfo.html.twig', array(
+			'json_info' => json_encode($eqs)
+        ));
+	}
+
+    /**
+     * Creates a list
+     *
+     * @Route("/jsoninfo2", name="equipment_jsoninfo2")
+     * @Method({"GET"})
+     */
+    public function createList(Request $request) {
+
+        $em = $this->getDoctrine()->getManager();
+        $query = $em->createQuery(
+            'SELECT c.nazwa, c.kogoSprzet
+			FROM MMBundle:Equipment c WHERE c.kogoSprzet=\'Jan Kowalski\''
+        );
+        $eqs = $query->getArrayResult();
+
+        return $this->render('equipment/jsoninfo2.html.twig', array(
+            'json_info' => json_encode($eqs)
+        ));
+    }
+
+    /**
+     * Create json
+     *
+     * @Route("/jsoninfo3", name="equipment_jsoninfo3")
+     * @Method({"GET"})
+     */
+    public function createJson(Request $request) {
+
+        $em = $this->getDoctrine()->getManager();
+        $query = $em->createQuery(
+            'SELECT c.nazwa, c.wartoscNetto
+			FROM MMBundle:Equipment c WHERE c.wartoscNetto>500'
+        );
+        $eqs = $query->getArrayResult();
+
+        return $this->render('equipment/jsoninfo3.html.twig', array(
+            'json_info' => json_encode($eqs)
+        ));
+    }
+	
     /**
      * Creates a new Equipment entity.
      *
