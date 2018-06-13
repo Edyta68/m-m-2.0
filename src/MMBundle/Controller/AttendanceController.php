@@ -98,6 +98,34 @@ class AttendanceController extends Controller
         ));
     }
 
+	
+/**
+     * Creates a new Attendance entity.
+     *
+     * @Route("/attendanceJson", name="attendanceJson")
+     * @Method({"GET"})
+     */
+    public function printIt(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $query = $em->createQuery(
+            'SELECT c.data, c.czasPracy
+			FROM MMBundle:Attendance c '
+        );
+        $eqs = $query->getArrayResult();
+
+
+
+        $response = new Response(json_encode($eqs));
+        $response->headers->set('Content-Type','application/json');
+        $response->headers->set('Access-Control-Allow-Origin','*');
+        header('Access-Control-Allow-Origin: *');
+        
+        return $this->render('attendance/attendanceJson.html.twig', array(
+            'json_info' => json_encode($eqs)
+        ));
+    }
+	
     /**
      * Finds and displays a Attendance entity.
      *
