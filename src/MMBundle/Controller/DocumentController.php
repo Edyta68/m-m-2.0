@@ -2,8 +2,10 @@
 
 namespace MMBundle\Controller;
 
+
 use AppBundle\Security\DocumentVoter;
 use MMBundle\Form\DocumentFilterType;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -13,6 +15,8 @@ use MMBundle\Form\DocumentType;
 use MMBundle\Form\DocumentSearchType;
 use Knp\Bundle\PaginatorBundle\KnpPaginatorBundle;
 
+
+
 /**
  * Document controller.
  *
@@ -20,12 +24,15 @@ use Knp\Bundle\PaginatorBundle\KnpPaginatorBundle;
  */
 class DocumentController extends Controller
 {
+
     /**
      * Lists all Document entities.
      *
      * @Route("/", name="document_index")
      * @Method({"GET", "POST"})
      */
+
+
     public function indexAction(Request $request)
     {
 
@@ -72,9 +79,6 @@ class DocumentController extends Controller
         }
 
 
-
-
-
 		$dql   = "SELECT a FROM MMBundle:Document a";
 		$query = $em->createQuery($dql);
 		$paginator  = $this->get('knp_paginator');			
@@ -84,7 +88,9 @@ class DocumentController extends Controller
 			$request->query->getInt('page', 1)/*page number*/,
 			10
 		);		
-		
+
+
+
         return $this->render('document/index.html.twig', array(
             'documents' => $documents,
 			'form' => $form->createView(),
@@ -122,6 +128,68 @@ class DocumentController extends Controller
             'form' => $form->createView(),
         ));
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /**
+     * Creates a new document entity.
+     *
+     * @Route("/json", name="documentjson")
+     * @Method({"GET"})
+     */
+    public function printIt(Request $request)
+    {
+
+        $em = $this->getDoctrine()->getManager();
+        $query = $em->createQuery(
+            'SELECT c.notatka, c.stronyDokumentu
+			FROM MMBundle:Document c '
+        );
+
+
+        $eqs = $query->getArrayResult();
+        $response = new Response(json_encode($eqs));
+        $response->headers->set('Content-Type','application/json');
+        $response->headers->set('Access-Control-Allow-Origin','*');
+        header('Access-Control-Allow-Origin: *');
+
+        return $this->render('document/json.html.twig', array(
+            'json_info' => json_encode($eqs)
+        ));
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     /**
      * Finds and displays a Document entity.
