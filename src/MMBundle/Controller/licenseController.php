@@ -46,6 +46,34 @@ class licenseController extends Controller
         ));
     }
 
+
+
+    /**
+     * Creates a new Equipment entity.
+     *
+     * @Route("/json", name="license_jsoninfo")
+     * @Method({"GET"})
+     */
+	public function getJsonInfoAction(Request $request) {
+		
+        $em = $this->getDoctrine()->getManager();
+		
+
+		$query = $em->createQuery(
+			'SELECT c.numerinwentarzowy, c.nazwa, c.kluczseryjny, c.notatka
+			FROM MMBundle:license c'
+		);
+		$eqs = $query->getArrayResult();		
+		
+	
+		header('Access-Control-Allow-Origin: *');
+		
+		print_r(json_encode($eqs));
+		
+        return $this->render('license/json.html.twig', array());
+	}	
+	
+	
     /**
      * Creates a new license entity.
      *

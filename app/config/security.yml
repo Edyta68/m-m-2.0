@@ -33,6 +33,7 @@ security:
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/equipment/jsoninfo, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/attendance/attendanceJson, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/license/json, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/document/json, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin/, role: ROLE_ADMIN }
